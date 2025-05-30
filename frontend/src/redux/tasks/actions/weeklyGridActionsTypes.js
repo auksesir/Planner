@@ -1,0 +1,1 @@
+export const SET_WEEKLY_GRID_OPEN = 'SET_WEEKLY_GRID_OPEN';

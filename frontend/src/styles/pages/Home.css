@@ -1,0 +1,273 @@
+/* Updated Home.css with consistent timer positioning */
+
+body {
+  background: #080527;
+}
+
+/* Home container with relative positioning */
+.home-container {
+  min-height: 150vh; /* Increased to ensure there's scrollable content */
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header section contains the title text */
+.header-section {
+  height: 100vh; /* Full viewport height */
+  position: relative;
+}
+
+/* Sphere container positioned in the middle of the screen */
+.sphere-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 240px; /* Fixed height for the sphere */
+  z-index: 1;
+}
+
+/* FIXED: Specific positioning for different timer types */
+.timer-sphere {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.pomodoro-container {
+  position: absolute;
+  top: 45%; /* Slightly lower to account for controls taking up space below */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+/* When on home page, adjust positioning */
+.timer-sphere.notcentered {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.pomodoro-container.notcentered {
+  position: absolute;
+  top: 34%; /* Adjusted for home page with controls */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+/* FIXED: Make the default sphere scroll with the page */
+.sphere {
+  position: absolute; /* Changed from fixed to absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  box-shadow: 0 0 .5rem .3rem rgba(255, 255, 255, 0.076), inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
+  animation: bounce 7s ease-in-out infinite;
+  filter: blur(.03rem);
+}
+
+.sphere.notcentered {
+  position: absolute; /* Changed from fixed to absolute */
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Planner container positioned below initial viewport */
+.planner-container {
+  position: relative;
+  margin-top: 100vh; /* Position it after the first viewport height */
+  padding-bottom: 50px;
+  width: 100%;
+  z-index: 10; /* Ensure planner is above the timers */
+}
+
+/* Keep text styling and positioning exactly as it was */
+.text {
+  font-family: Georgia;
+  font-variant: small-caps;
+  -webkit-text-stroke: 0.08rem rgba(255, 255, 255, 0.728);
+  color: rgba(206, 207, 236, 0);
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 0.5vh;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-weight: bold;
+  width: 100%;
+  position: absolute; /* Keep as absolute */
+  top: 45%; /* Keep original position */
+  transform: translateY(-50%); /* Keep original transform */
+  word-wrap: break-word;
+  white-space: normal;
+  text-shadow:    
+      1rem 0.7rem 0.14rem rgba(35, 33, 155, 0),
+      0 0 2rem rgba(13, 20, 241, 0.856),
+      0 0 1rem rgba(229, 230, 238, 0.908);
+  z-index: 20; /* Ensure text is on top of everything */
+}
+
+/* Updated current-day-planner styling */
+.current-day-planner {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  background-color: rgba(8, 5, 39, 0.8); /* Add a semi-transparent background */
+  backdrop-filter: blur(5px); /* Add blur effect behind the planner */
+  z-index: 10; /* Ensure planner is above the timers */
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+
+h2 {
+  color: #403cc989;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+
+/* Button styles */
+button {
+  background-color: #2720e82d;
+  color: #ffffff68;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1542f7;
+  color: rgba(255, 255, 255, 0.879);
+}
+
+/* Input box styles */
+textarea {
+  width: 100%;
+  height: 3rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #f9f9fb;
+  color: rgb(13, 54, 80);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #d7d7d94d;
+  box-shadow: 0 0 0.3rem rgba(212, 212, 214, 0.159);
+}
+
+textarea, 
+button {
+  animation: slowAppear 0.4s ease-in-out forwards;
+}
+
+
+
+/* Animations */
+@keyframes slowAppear {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes slowDisappear {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
+
+.fade-out, 
+.button-disappear {
+  animation: slowDisappear 1s ease-in-out;
+}
+
+
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .text {
+    font-size: 3rem;
+    letter-spacing: 0.3vh;
+  }
+  
+  
+ /* FIXED: Specific mobile positioning for different timer types */
+  .timer-sphere {
+    position: absolute;
+    top: 30%; /* Moved up to match pomodoro timer */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .pomodoro-container {
+    position: absolute;
+    top: 30%; /* Lower to account for controls */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .timer-sphere.notcentered {
+    position: absolute;
+    top: 30%; /* Moved up to match pomodoro timer */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .pomodoro-container.notcentered {
+    position: absolute;
+    top: 30%; /* Adjusted for mobile home page */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* FIXED: Also make default sphere scroll with page on mobile */
+  .sphere {
+    position: absolute; /* Changed from fixed to absolute */
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12rem;
+    height: 12rem;
+  }
+  
+  .sphere.notcentered {
+    position: absolute; /* Changed from fixed to absolute */
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .text {
+    font-size: 2.5rem;
+  }
+  
+  .current-day-planner {
+    padding: 0.5rem;
+  }
+}

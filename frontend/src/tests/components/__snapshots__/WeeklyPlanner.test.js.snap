@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeeklyPlanner Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="weekly-planner"
+  >
+    <div
+      class="date-selectors"
+    >
+      <label>
+        Year:
+        <select
+          class="year-select"
+        >
+          <option
+            value="2020"
+          >
+            2020
+          </option>
+          <option
+            value="2021"
+          >
+            2021
+          </option>
+          <option
+            value="2022"
+          >
+            2022
+          </option>
+          <option
+            value="2023"
+          >
+            2023
+          </option>
+          <option
+            value="2024"
+          >
+            2024
+          </option>
+          <option
+            value="2025"
+          >
+            2025
+          </option>
+          <option
+            value="2026"
+          >
+            2026
+          </option>
+          <option
+            value="2027"
+          >
+            2027
+          </option>
+          <option
+            value="2028"
+          >
+            2028
+          </option>
+          <option
+            value="2029"
+          >
+            2029
+          </option>
+          <option
+            value="2030"
+          >
+            2030
+          </option>
+        </select>
+      </label>
+      <label>
+        Month:
+        <select
+          class="month-select"
+        >
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+          <option />
+        </select>
+      </label>
+    </div>
+    <div>
+      <button>
+        ←
+      </button>
+      <button>
+        Show Single Day
+      </button>
+      <button>
+        →
+      </button>
+    </div>
+    <div
+      class="weekly-scroll-container"
+      id="weekly-scroll"
+    >
+      <div
+        class="weekly-content-wrapper"
+      >
+        <div
+          class="week-grid"
+        >
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+          <div
+            data-testid="day-cell"
+          >
+            <div>
+              Day: Thu
+            </div>
+            <div>
+              Date: 20
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-testid="sphere"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,434 @@
+/* Global Styles */
+body {
+  background: #080527;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Daily Planner Container */
+.current-day-planner {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 100%;
+  width: 100%;
+}
+
+/* Base Daily Planner Styles */
+.daily-planner {
+  padding: 1.25rem;
+  padding-bottom: calc(100px + 1.25rem);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 300px;
+  overflow: visible;
+}
+
+/* Current Day View */
+.current-day-planner .daily-planner {
+  width: min(90%, 25rem);
+  margin-inline: auto;
+  border-radius: 5rem;
+}
+
+/* Monthly/Weekly Views - Fixed Width and Overflow */
+.monthly-planner-container .daily-planner-container,
+.weekly-planner .daily-planner-container {
+  width: min(90%, 25rem);
+  margin-inline: auto;
+  padding-bottom: 120px;
+  overflow: visible;
+}
+
+.monthly-planner-container .daily-planner-container .daily-planner,
+.weekly-planner .daily-planner-container .daily-planner {
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: rgba(20, 20, 20, 0.1);
+  position: relative;
+}
+
+/* Day Title */
+.day-title {
+  color: #d8d7f3d5;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+}
+
+/* Time Slots Container */
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Time Slot Structure */
+.time-slot {
+  position: relative;
+  color: rgb(225, 230, 251);
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  background-color: #eab81400;
+  padding: 0.7rem;
+  box-shadow: 0 0 0.2rem 0.1rem #eae3f220;
+  border-radius: 0.5rem;
+  overflow: visible;
+  box-sizing: border-box;
+  min-width: 280px;
+}
+
+/* Time Display - Add right margin to push content */
+.time {
+  color: #c6c6c6;
+  font-size: 1rem;
+  min-width: 65px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 10px; /* Added this line to push content right */
+}
+
+/* Task/Reminder Content - Adjust padding */
+.time-slot-content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  padding-left: 5px; /* Added slight padding */
+}
+
+
+/* Task/Reminder Items - Consistent Colors */
+.task-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  background-color: rgba(87, 61, 202, 0.1);
+  border-left: 2px solid rgba(87, 61, 202, 0.4);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.reminder-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  background-color: rgba(52, 168, 83, 0.1);
+  border-left: 2px solid rgba(52, 168, 83, 0.4);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+/* Task Content Layout */
+.task-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Time and Duration */
+.item-time-duration {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.3rem;
+}
+
+.task-time {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.task-duration {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.1rem;
+}
+
+.task-title {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.highlighted-task {
+  background-color: rgba(255, 255, 0, 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.5);
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* Reminder Tooltip - Fixed Positioning */
+.reminder-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  z-index: 100;
+}
+
+.reminder-icon {
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #eab814;
+  flex-shrink: 0;
+}
+
+.reminder-tooltip {
+  position: absolute;
+  visibility: hidden;
+  background-color: rgba(17, 24, 39, 0.95);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 1000;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  left: 50%;
+  top: 100%;
+}
+
+.reminder-icon-container:hover .reminder-tooltip {
+  visibility: visible;
+}
+
+/* Action Buttons */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.edit-button,
+.delete-button {
+  font-size: 0.8rem; /* Increased from 0.45rem */
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.4rem; /* Increased padding */
+  border-radius: 0.25rem; /* Slightly larger radius */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 1.8rem; /* Ensures consistent size */
+  min-height: 1.8rem; /* Ensures consistent size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.delete-button {
+  background-color: #e19ba29a;
+}
+
+.delete-button:hover {
+  background-color: #e28787;
+}
+
+/* Time Slot States */
+.time-slot.current {
+  background-color: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0.3rem 0.1rem rgba(59, 130, 246, 0.2);
+}
+
+.time-slot.passed {
+  background-color: rgba(10, 10, 10, 0.8);
+  opacity: 0.7;
+}
+
+.time-slot.future {
+  background-color: rgba(20, 20, 20, 0.4);
+}
+
+/* Input Styles */
+.add-task-input {
+  display: flex;
+  align-items: center;
+  margin-top: 0.625rem;
+  width: 100%;
+}
+
+.task-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  margin-right: 0.625rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.add-task-button {
+  background-color: #d7d7d7b6;
+  color: #220b0b;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  margin-top: .5rem;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-task-button:hover {
+  background-color: #f9f7f7;
+}
+
+/* Empty State */
+.no-tasks {
+  color: #999;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 400px;
+}
+
+.modal-content p {
+  margin-bottom: 1.5rem;
+}
+
+.modal-content button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  opacity: 0.9;
+}
+
+/* Item list styles */
+.item-list {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-list li {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .daily-planner {
+    padding: 1rem;
+    padding-bottom: calc(80px + 1rem);
+  }
+  
+  .monthly-planner-container .daily-planner-container,
+  .weekly-planner .daily-planner-container {
+    width: 95%;
+  }
+  
+  .day-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .time {
+    font-size: 0.9rem;
+    min-width: 55px;
+  }
+  
+  .time-slot {
+    min-width: 250px;
+    padding: 0.6rem;
+  }
+  
+  .task-time {
+    font-size: 0.75rem;
+  }
+  
+  .task-title {
+    font-size: 0.85rem;
+  }
+  
+  .reminder-tooltip {
+    transform: translateX(-75%);
+    min-width: 180px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    font-size: 0.4rem;
+    padding: 0.1rem 0.18rem;
+  }
+  
+  .reminder-icon {
+    font-size: 0.8rem;
+  }
+}
+
+/* Toast Notification Styles */
+.reminder-toast {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid #3b82f6;
+  color: #f0f9ff;
+  font-weight: 500;
+}

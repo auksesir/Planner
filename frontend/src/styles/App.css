@@ -1,0 +1,208 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: .5rem;
+  letter-spacing: 0.3vh;  
+  max-width: 39rem;
+  margin-inline:  auto;
+  margin-top: 2rem;
+  opacity: 0.5;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  margin-bottom: .3rem;;
+  font-size: 1.4rem;
+}
+
+/*align first navbar child on the left and the rest on the right*/
+
+
+.navbar:hover{
+  opacity: .8;
+}
+
+.navbar a {
+  color: rgba(240, 230, 221, 0);
+  -webkit-text-stroke: .08rem rgba(80, 96, 235, 0.76);
+  text-decoration: none;
+  margin-right: 1.5rem;
+  transition: all 0.3s; 
+  padding-bottom: .2rem;
+  
+}
+
+.navbar a:hover {
+  border-radius: 0.25rem;
+  background-color: rgb(240, 203, 179, .15);
+  color: #080527;      
+  opacity: 1;
+  padding: 0.5rem;
+  -webkit-text-stroke: 0rem rgba(255, 255, 255, 0.26);
+  opacity: 1;
+}
+
+/* Weekday Dropdown */
+.weekday-dropdown {
+  position: relative;
+  
+}
+
+.weekday-dropdown-btn {
+  cursor: pointer;
+}
+
+
+.weekday-dropdown-content {
+  position: absolute;
+  border-radius: 0.25rem;
+  background-color: rgb(240, 203, 179, .15);
+  padding: 0.5rem;
+  left: 0;
+  z-index: 1;
+  display: none;
+  
+}
+
+.weekday-dropdown-content,
+.weekday-dropdown-content:hover {
+  display: block;
+}
+
+.weekday-dropdown-content a {
+  display: block;
+  color: #ffffff7a;
+  background-color: rgb(240, 203, 179, .005);
+  text-decoration: none;
+  padding: 0.4rem;
+  transition: background-color 0.3s;
+  
+}
+
+.weekday-dropdown-content a:hover {
+  background-color: #f1f1f110;
+  
+  border-radius: 0.25rem;
+  width:87%;
+}
+
+
+.daily-planner {
+  margin-bottom: 2.5rem;
+}
+
+.sphere {
+  z-index: -1;
+  width: 15rem;
+  height: 15rem;
+  border-radius:50%;
+  background: 
+  radial-gradient(circle at 80% 100%, rgb(113, 67, 214) 0%, rgba(36, 44, 189, 0) 15%),
+  radial-gradient(circle at 30% 80%, rgba(29, 51, 217, 0.5) 2%, rgba(35, 10, 173, 0) 20%),
+  radial-gradient(circle at 20% 30%, rgba(98, 115, 201, 0.406) 5%, rgba(205, 199, 195, 0) 20%),
+  radial-gradient(circle at 60% 55%, rgba(18, 43, 202, 0.778) 3%, rgba(146, 132, 121, 0) 11%),
+  radial-gradient(circle at 80% 30%, rgb(63, 83, 215) 5%, rgba(146, 132, 121, 0) 20%),
+  radial-gradient(circle at 90% 40%, rgb(98, 116, 236) 5%, rgba(179, 115, 81, 0) 20%),
+  radial-gradient(circle at 70% 62%, #3b2bb5 5%, rgba(196, 183, 176, 0) 20%),
+  radial-gradient(circle at 80% 60%, rgba(26, 42, 166, 0.855) 10%, rgba(84, 95, 89, 0) 30%),
+  radial-gradient(circle at 10% 60%, rgba(126, 130, 203, 0.018) 10%, rgba(79, 6, 6, 0) 30%),
+  linear-gradient(to right, rgba(6, 6, 62, 0.179) 50%, rgba(12, 31, 159, 0.25) 75%, rgba(167, 58, 58, 0.722) 100%),
+  linear-gradient(to bottom, rgba(44, 20, 180, 0.568) 0%, rgba(11, 17, 65, 0.065) 33%, rgba(20, 13, 233, 0.179) 50%, rgb(29, 4, 59) 75%, rgba(71, 68, 172, 0.251) 100%);
+  box-shadow: 
+                  0 0 .5rem .3rem rgba(255, 255, 255, 0.076),
+                  inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
+  animation: bounce 7s ease-in-out infinite;
+  filter: blur(.03rem);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in-out;   
+}
+
+.sphere.notcentered {
+  top: 39%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+      transform: translate(-50%, -50%) translateY(-2px); /* Adjust the bounce height */
+  }
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.settings-button:hover {
+  /* Match your Link hover styles */
+  text-decoration: underline;
+}
+
+.sphere-timer-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: height 1s linear;
+  mix-blend-mode: normal; /* Change this from overlay */
+  filter: blur(4px); /* Update this */
+  border-radius: 50%;
+}
+
+.sphere-timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  z-index: 2;
+}
+
+.sphere-timer-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-2px);
+  }
+}
+
+
+
+
+
+
+
+
+

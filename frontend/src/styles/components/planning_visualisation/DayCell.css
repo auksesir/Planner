@@ -1,0 +1,256 @@
+/* Base container */
+.day-cell {
+  position: relative;
+  padding: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Header styling */
+.day-header {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(8, 5, 39, 0.8);
+}
+
+.day-name {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.day-number {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Grid layout */
+.hourly-grid {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100% - 3rem);
+}
+
+/* Weekly grid container and scroll behavior */
+.weekly-scroll-container {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 200px);
+  padding-bottom: 1rem;
+}
+
+.weekly-content-wrapper {
+  min-width: 1200px;
+  width: 100%;
+}
+
+/* Updated week grid to ensure rows stay aligned */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(170px, 1fr));
+  gap: 1px;
+  min-height: 100%;
+  grid-auto-rows: minmax(60px, auto);
+}
+
+/* Hour cell styling */
+.hour-cell {
+  position: relative;
+  min-height: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.hour-label {
+  position: sticky;
+  top: 0;
+  left: 4px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.397);
+  z-index: 1;
+  width: 30px;
+  text-align: left;
+  padding-top: 2px;
+}
+
+.events-container {
+  position: relative;
+  padding: 0 4px 2px 32px; /* Reduced top padding to 0 */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 60px;
+  height: 100%;
+}
+
+/* Event blocks styling */
+.event-block {
+  position: relative;
+  margin: 1px 0; /* Reduced vertical margin */
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-size: 0.75rem;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(100% - 2px);
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.event-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.task-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-time span:first-child {
+  flex-shrink: 0;
+}
+
+.task-time span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-duration {
+  margin-left: auto;
+  opacity: 0.8;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+}
+
+/* Delete button styling */
+.delete-button-mini {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.delete-button-mini:hover {
+  background: rgba(220, 53, 69, 0.8);
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* Event type-specific styling */
+.task-block {
+  background-color: rgba(87, 61, 202, 0.514);
+  border-left: 2px solid #9590db;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reminder-block {
+  background-color: rgba(251, 255, 252, 0.285);
+  border-left: 2px solid #f9fdfacc;
+  width: calc(100% - 2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effects */
+.day-cell:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.event-block:hover {
+  transform: scale(1.01);
+  z-index: 2;
+}
+
+.task-block:hover {
+  background-color: rgba(87, 61, 202, 0.7);
+}
+
+.reminder-block:hover {
+  background-color: rgba(52, 168, 83, 0.8);
+}
+
+/* Add space for delete button on hover */
+.event-block:hover .event-name {
+  padding-right: 14px;
+}
+
+/* Scrollbar styling */
+.week-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.week-grid::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.week-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.week-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weekly-content-wrapper {
+    min-width: 800px;
+  }
+  
+  .hour-cell {
+    min-height: 50px;
+  }
+  
+  .event-block {
+    font-size: 0.7rem;
+  }
+  
+  .task-duration {
+    font-size: 0.65rem;
+  }
+
+  .delete-button-mini {
+    width: 14px;
+    height: 14px;
+    font-size: 7px;
+  }
+}

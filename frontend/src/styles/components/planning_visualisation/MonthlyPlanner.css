@@ -1,0 +1,55 @@
+.monthly-planner-container {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #f0e6dd89; /* Light beige */
+  }
+  
+  .date-selectors {
+    margin-bottom: 20px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .8rem;
+  }
+  
+  .day-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #f0e6ddd4; /* Light beige */
+  }
+  
+  .empty-day {
+    height: 0; /* Empty days take no space */
+  }
+  
+  .calendar-day {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #f0cbaf1a; /* Light beige background with transparency */
+    border-radius: 0.25rem;
+}
+  
+  .calendar-day:hover {
+    background-color: #f1f1f100;
+    
+    
+  }
+  
+  /* Additional styles for better readability */
+  body {
+    background: #080527;
+    color: #f0e6dd; /* Light beige text color */
+  }
+  
+  
+  
+  

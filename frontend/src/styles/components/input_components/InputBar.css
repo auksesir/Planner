@@ -1,0 +1,102 @@
+/* Common styles for both TaskInputBar.css and ReminderInputBar.css */
+.input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #160e36;
+  padding: 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  text-align: center;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+/* Base input fields styles */
+.input-reminder,
+.input-task,
+.input-duration,
+.time-picker {
+  flex: 1;
+  min-width: 80px; /* Reduced minimum width */
+}
+
+.date-time-row {
+  display: flex;
+  gap: 5px;
+  flex: 2;
+}
+
+/* Button styles */
+.button-input {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #fff;
+  color: #160e36;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 70px; /* Reduced minimum width */
+}
+
+/* Pomodoro button styles */
+.pomodoro-button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #fff;
+  color: #160e36;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pomodoro-button.active {
+  background-color: #6b63ff;
+  color: white;
+}
+
+.pomodoro-button:hover {
+  background-color: #f0f0f0;
+}
+
+.pomodoro-button.active:hover {
+  background-color: #5a52ee;
+}
+
+/* MUI override styles */
+.MuiTextField-root {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.MuiInputBase-root {
+  margin: 0;
+}
+
+/* Menu styles */
+.MuiMenu-paper {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.MuiMenuItem-root {
+  padding: 8px 16px;
+  min-height: 40px;
+}

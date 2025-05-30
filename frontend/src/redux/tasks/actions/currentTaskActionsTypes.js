@@ -1,0 +1,2 @@
+
+export const SET_CURRENT_TASK = 'SET_CURRENT_TASK';

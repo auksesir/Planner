@@ -1,0 +1,216 @@
+/* Enhanced Node Completion Dialog CSS */
+.completion-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.completion-dialog-content {
+  background-color: #1e1e32;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.completion-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.completion-dialog-title {
+  font-size: 1.25rem;
+  color: white;
+  margin: 0;
+}
+
+.completion-dialog-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.completion-form-group {
+  margin-bottom: 24px;
+}
+
+.completion-form-label {
+  display: block;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.completion-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.completion-slider {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+}
+
+.completion-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4cc9f0;
+  cursor: pointer;
+}
+
+.completion-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4cc9f0;
+  cursor: pointer;
+  border: none;
+}
+
+.completion-value {
+  width: 48px;
+  text-align: right;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.completion-preview {
+  margin-top: 8px;
+}
+
+.completion-preview-bar {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.completion-preview-fill {
+  height: 100%;
+  background-color: #4cc9f0;
+  border-radius: 4px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.completion-preview-fill.warning {
+  background-color: #ff7f50; /* Coral color for warning state */
+}
+
+/* Warning message styles */
+.completion-warning-message {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.completion-warning-message.info {
+  background-color: rgba(76, 201, 240, 0.1);
+  border-left: 3px solid #4cc9f0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.completion-warning-message.warning {
+  background-color: rgba(255, 127, 80, 0.1);
+  border-left: 3px solid #ff7f50;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.warning-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.warning-detail {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* Children status section */
+.completion-children-status {
+  margin-bottom: 24px;
+}
+
+.children-status-info {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.children-status-info h4 {
+  font-size: 0.9rem;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.children-status-info p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Button styles */
+.completion-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.completion-button-secondary,
+.completion-button-primary {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.completion-button-secondary {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.completion-button-primary {
+  background-color: #4cc9f0;
+  border: none;
+  color: white;
+}
+
+.completion-button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.completion-button-primary:hover {
+  background-color: #3a86ff;
+}

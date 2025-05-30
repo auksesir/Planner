@@ -1,0 +1,322 @@
+/* TaskInputBar.css */
+.input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #160e36;
+  padding: 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  text-align: center;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.input-task {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.date-time-row {
+  display: flex;
+  gap: 5px;
+  flex: 2;
+  min-width: 300px;
+  flex-wrap: wrap;
+}
+
+.time-picker {
+  min-width: 90px;
+  flex: 1;
+  max-width: 150px;
+}
+
+.input-duration {
+  min-width: 90px;
+  flex: 1;
+  max-width: 120px;
+}
+
+.button-input {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #fff;
+  color: #160e36;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 70px;
+  font-size: 14px;
+}
+
+/* Pomodoro button styles */
+.pomodoro-button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #fff;
+  color: #160e36;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pomodoro-button.active {
+  background-color: #6b63ff;
+  color: white;
+}
+
+.pomodoro-button:hover {
+  background-color: #f0f0f0;
+}
+
+.pomodoro-button.active:hover {
+  background-color: #5a52ee;
+}
+
+/* MUI overrides - Force white backgrounds and black text */
+.input-container .MuiTextField-root {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.input-container .MuiInputBase-root {
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiOutlinedInput-root {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiInputBase-input {
+  background-color: #fff;
+  color: #000;
+}
+
+/* MUI Date/Time Picker specific styling */
+.input-container .MuiPickersTextField-root {
+  background-color: #fff;
+}
+
+.input-container .MuiPickersTextField-root .MuiInputBase-root {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersInputBase-root {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersOutlinedInput-root {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersInputBase-input {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersInputBase-sectionsContainer {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersSectionList-root {
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiPickersSectionList-sectionContent {
+  color: #000;
+}
+
+/* Force black text on picker sections */
+.input-container [role="spinbutton"] {
+  color: #000;
+}
+
+.input-container [contenteditable="true"] {
+  color: #000;
+}
+
+.input-container [aria-label="Month"],
+.input-container [aria-label="Day"], 
+.input-container [aria-label="Year"],
+.input-container [aria-label="Hours"],
+.input-container [aria-label="Minutes"],
+.input-container [aria-label="Meridiem"] {
+  color: #000;
+}
+
+/* Placeholder text */
+.input-container .MuiInputBase-input::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* Label styling */
+.input-container .MuiInputLabel-root {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.input-container .MuiInputLabel-root.Mui-focused {
+  color: #1976d2;
+}
+
+/* Border styling */
+.input-container .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.input-container .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+.input-container .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1976d2;
+}
+
+/* Picker-specific border styling */
+.input-container .MuiPickersOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.input-container .MuiPickersOutlinedInput-root:hover .MuiPickersOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+.input-container .MuiPickersOutlinedInput-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline {
+  border-color: #1976d2;
+}
+
+/* Menu styling */
+.input-container .MuiMenu-paper {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.input-container .MuiMenuItem-root {
+  padding: 8px 16px;
+  min-height: 40px;
+  background-color: #fff;
+  color: #000;
+}
+
+.input-container .MuiMenuItem-root:hover {
+  background-color: #f5f5f5;
+}
+
+/* Icon button styling */
+.input-container .MuiInputAdornment-root {
+  background-color: transparent;
+}
+
+.input-container .MuiIconButton-root {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* Responsive design for narrow screens */
+@media (max-width: 768px) {
+  .input-container {
+    padding: 15px 10px;
+  }
+  
+  .input-wrapper {
+    flex-direction: column;
+    gap: 8px;
+    width: 98%;
+  }
+  
+  .input-task {
+    min-width: 100%;
+    max-width: none;
+  }
+  
+  .date-time-row {
+    width: 100%;
+    min-width: 100%;
+    gap: 5px;
+  }
+  
+  .time-picker {
+    min-width: 80px;
+    font-size: 14px;
+  }
+  
+  .input-duration {
+    width: 100%;
+    min-width: 100%;
+    margin-top: 5px;
+  }
+  
+  .button-input {
+    min-width: 60px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-container {
+    padding: 10px 5px;
+  }
+  
+  .date-time-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .time-picker {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .button-input {
+    min-width: 50px;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .input-wrapper {
+    gap: 5px;
+  }
+  
+  .button-input {
+    min-width: 45px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  
+  .time-picker .MuiInputBase-input {
+    font-size: 13px;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,126 @@
+/* Fixed PomodoroTimer.css - Proper positioning to match sphere height */
+
+/* Remove any competing positioning - let Home.css handle the main positioning */
+.pomodoro-container {
+  z-index: 5;
+  transition: all 0.5s ease-in-out;
+}
+
+/* FIXED: Remove excessive margins that push timer down */
+.pomodoro-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 25rem;
+}
+
+/* Simplify the sphere container */
+.timer-sphere-container {
+  position: relative;
+}
+
+/* FIXED: Match the exact size of the default sphere and visual timer */
+.timer-sphere {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  box-shadow: 0 0 .5rem .3rem rgba(255, 255, 255, 0.076), inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
+  animation: bounce 7s ease-in-out infinite; /* Add the same bounce animation as default sphere */
+  filter: blur(.03rem);
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+.timer-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* Style the controls container - FIXED: Position below sphere */
+.timer-controls-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 15rem; /* INCREASED: More space between sphere and controls to prevent overlap */
+  position: relative;
+  z-index: 10; /* Ensure controls are above sphere */
+}
+
+/* Controls in a row */
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.timer-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #160e36;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timer-button:hover {
+  transform: scale(1.1);
+  background-color: #211552;
+}
+
+.timer-button.play-pause {
+  background-color: #6b63ff;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.2rem;
+}
+
+.timer-button.play-pause:hover {
+  background-color: #5a52ee;
+}
+
+.timer-button.reset {
+  background-color: #555;
+}
+
+.timer-button.reset:hover {
+  background-color: #666;
+}
+
+.timer-button.skip {
+  background-color: #555;
+}
+
+.timer-button.skip:hover {
+  background-color: #666;
+}
+
+.timer-button.close {
+  background-color: #e74c3c;
+}
+
+.timer-button.close:hover {
+  background-color: #c0392b;
+}
+
+
+
+

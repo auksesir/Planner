@@ -1,0 +1,7 @@
+/* Add this style to position CurrentDayPlanner out of the initial view */
+.current-day-planner {
+    position: fixed;
+    top: 100%; /* Initially position it below the viewport */
+    transition: top 0.5s ease; /* Add a smooth transition effect */
+  }
+  

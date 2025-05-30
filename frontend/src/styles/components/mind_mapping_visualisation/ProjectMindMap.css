@@ -1,0 +1,53 @@
+/* Transparent Project MindMap Styles - Without Header */
+.project-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent; /* Transparent background */
+}
+
+.mind-map-container {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+  background-color: transparent; /* Transparent background */
+}
+
+.empty-mind-map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba(136, 136, 136, 0.6); /* More subtle */
+}
+
+.empty-mind-map-text {
+  text-align: center;
+  font-size: 12px; /* Smaller font */
+}
+
+.add-main-node-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 28px; /* Smaller button */
+  height: 28px; /* Smaller button */
+  border-radius: 50%;
+  background-color: rgba(107, 99, 255, 0.6); /* More subtle */
+  color: white;
+  font-size: 16px; /* Smaller font */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Subtler shadow */
+  cursor: pointer;
+  border: none;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.add-main-node-btn:hover {
+  background-color: rgba(58, 134, 255, 0.7); /* More subtle hover */
+  transform: scale(1.05); /* Smaller scale effect */
+}

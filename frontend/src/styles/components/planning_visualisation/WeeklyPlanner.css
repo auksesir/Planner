@@ -1,0 +1,212 @@
+/* WeeklyPlanner.css */
+/* Taking EXACT styles from MonthlyPlanner and applying them */
+
+.weekly-planner {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #f0e6dd89; /* Light beige */
+}
+
+.date-selectors {
+  margin-bottom: 20px;
+}
+
+.date-selectors label {
+  color: #f0e6ddd4; /* Light beige */
+  margin: 0 10px;
+}
+
+.month-select,
+.year-select {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #f0cbaf1a; /* Light beige background with transparency */
+  color: #f0e6dd;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.month-select:hover,
+.year-select:hover {
+  background-color: #f1f1f100;
+}
+
+/* Navigation */
+.weekly-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.weekly-nav button {
+  background-color: #f0cbaf1a;
+  color: #ffffff68;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: all 0.3s ease;
+}
+
+.weekly-nav button:hover {
+  background-color: #1542f7;
+  color: rgba(255, 255, 255, 0.879);
+}
+
+.view-toggle {
+  background-color: #1542f718;
+}
+
+/* Week grid and cell layout */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(170px, 1fr));
+  gap: 1px;
+  height: auto;
+  min-height: calc(100vh - 350px); /* Reduced minimum height */
+  margin-bottom: 40px; /* Added margin at the bottom */
+}
+
+.week-days-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 1rem;
+}
+
+.day-selector {
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem; /* Added gap between day name and number */
+  color: #f0e6ddd4;
+}
+
+.day-selector:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.day-selector.selected {
+  color: #fff;
+  background-color: rgba(21, 66, 247, 0.1);
+}
+
+/* Daily planner container */
+.daily-planner-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: 120px;
+  width: min(70%, 20rem);
+  margin-inline: auto;
+  margin-top: 60px; /* Added margin at the top to push content down */
+  position: relative; /* Create positioning context */
+  top: 0; /* Ensure it doesn't have any unexpected positioning */
+}
+
+/* IMPROVED SCROLL CONTAINERS */
+.weekly-scroll-container {
+  overflow-x: scroll; /* Force horizontal scrollbar to always be visible */
+  overflow-y: auto;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - 250px); /* Reduced height to leave more space at bottom */
+  padding-bottom: 1rem;
+  margin-bottom: 60px; /* Added margin at the bottom */
+  position: relative;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: auto; /* For Firefox */
+}
+
+.weekly-content-wrapper {
+  width: max-content;
+  min-width: 1400px; /* Increased minimum width to ensure full content is available for scrolling */
+  position: relative;
+}
+
+/* Scrollbar styling */
+.weekly-scroll-container::-webkit-scrollbar,
+.week-grid::-webkit-scrollbar,
+.daily-planner-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.weekly-scroll-container::-webkit-scrollbar-track,
+.week-grid::-webkit-scrollbar-track,
+.daily-planner-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.weekly-scroll-container::-webkit-scrollbar-thumb,
+.week-grid::-webkit-scrollbar-thumb,
+.daily-planner-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.weekly-scroll-container::-webkit-scrollbar-thumb:hover,
+.week-grid::-webkit-scrollbar-thumb:hover,
+.daily-planner-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Calendar grid for day selection */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Changed from auto to hidden to remove horizontal scrollbar */
+  overflow-y: hidden; /* Added to ensure no vertical scrollbar */
+  position: relative; /* Added to create stacking context */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .week-grid {
+    grid-template-columns: repeat(7, 200px); /* Fixed width columns on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .weekly-content-wrapper {
+    min-width: 1400px; /* Increased minimum width for scrolling */
+  }
+  
+  .daily-planner-container {
+    width: 90%;
+  }
+  
+  .date-selectors {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .weekly-planner::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 200px;
+    width: 30px;
+    height: calc(100vh - 300px);
+    background: linear-gradient(to right, transparent, rgba(8, 5, 39, 0.7));
+    pointer-events: none;
+    z-index: 10;
+  }
+}

@@ -1,0 +1,41 @@
+/* EventItem.css */
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.event-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.event-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.event-details {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.event-time {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.2rem;
+}
+
+.event-title {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

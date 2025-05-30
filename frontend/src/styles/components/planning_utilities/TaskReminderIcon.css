@@ -1,0 +1,173 @@
+.reminder-icon-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+ }
+ 
+ .reminder-icon-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+ }
+ 
+ .reminder-bell {
+  cursor: pointer;
+  transition: colors 0.2s;
+  display: flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+ }
+ 
+ .reminder-bell-active {
+  color: #eab308; /* yellow-500 */
+ }
+ 
+ .reminder-bell-active:hover {
+  color: #ca8a04; /* yellow-600 */
+ }
+ 
+ .reminder-bell-inactive {
+  color: #9ca3af; /* gray-400 */
+ }
+ 
+ .reminder-bell-inactive:hover {
+  color: #6b7280; /* gray-500 */
+ }
+ 
+ .reminder-tooltip {
+  position: absolute;
+  visibility: hidden;
+  background-color: #1f2937; /* gray-800 */
+  color: white;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  min-width: 200px;
+  z-index: 50;
+ }
+ 
+ .reminder-icon-group:hover .reminder-tooltip {
+  visibility: visible;
+ }
+ 
+ .reminder-tooltip-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+ }
+ 
+ .reminder-tooltip-delete {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid #4b5563; /* gray-600 */
+ }
+ 
+ .reminder-delete-button {
+  color: #f87171;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+ }
+ 
+ .reminder-delete-button:hover {
+  color: #fca5a5;
+  background-color: rgba(255, 255, 255, 0.1);
+ }
+ 
+ .reminder-tooltip-arrow {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #1f2937; /* gray-800 */
+  transform: rotate(45deg);
+  left: 50%;
+  translate: -50%;
+  bottom: -0.25rem;
+ }
+ 
+ .reminder-input-container {
+  position: absolute;
+  z-index: 50;
+  margin-top: 0.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 0.75rem;
+  width: 12rem;
+  left: 0;
+ }
+ 
+ .reminder-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+ }
+ 
+ .reminder-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6;
+ }
+ 
+ .submit-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+ }
+ 
+ .submit-button:hover {
+  background-color: #2563eb;
+ }
+ 
+ /* Icons container */
+ .icons-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+ }
+ 
+ /* Task action buttons */
+ .edit-button,
+ .delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+ }
+ 
+ .edit-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+ }
+ 
+ .delete-button {
+  background-color: rgba(225, 155, 162, 0.6);
+ }
+ 
+ .delete-button:hover {
+  background-color: rgba(226, 135, 135, 0.8);
+ }

@@ -1,0 +1,13 @@
+/* Weekly Planner Styles */
+.weekly-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for each day of the week */
+    grid-column-gap: 0; /* Remove the gap between columns */
+    
+}
+
+
+.weekly-grid h2 {
+    font-size: 1rem;
+}
+

@@ -1,0 +1,66 @@
+/* Minimalistic Projects Container Styles */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: #12121e41; /* Dark background */
+}
+
+.error-message {
+  padding: 6px 12px; /* Smaller padding */
+  background-color: rgba(255, 59, 48, 0.1); /* More subtle */
+  color: rgba(255, 59, 48, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 59, 48, 0.2);
+  font-size: 12px; /* Smaller font */
+}
+
+.dismiss-error {
+  background: none;
+  border: none;
+  color: rgba(255, 59, 48, 0.7);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.projects-grid {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.project-list-container {
+  width: 180px; /* Narrower sidebar */
+  border-right: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+  overflow: auto;
+}
+
+.project-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba(136, 136, 136, 0.6);
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.empty-state p {
+  font-size: 12px;
+  max-width: 250px;
+}
