@@ -93,7 +93,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
   const getReminderOccurrenceId = (reminder) => {
     try {
       if (!reminder || !reminder.id) {
-        console.error('Invalid reminder object for occurrence ID generation:', reminder);
+        ('Invalid reminder object for occurrence ID generation:', reminder);
         return `unknown-${new Date().toISOString().split('T')[0]}-0`;
       }
       
@@ -126,7 +126,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
       
       return occurrenceId;
     } catch (error) {
-      console.error(`ERROR generating occurrence ID for [${reminder?.id}]:`, error);
+      (`ERROR generating occurrence ID for [${reminder?.id}]:`, error);
       return `${reminder?.id || 'unknown'}-${reminder?.type || 'unknown'}-${new Date().toISOString().split('T')[0]}-0`;
     }
   };
@@ -152,7 +152,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
       const reminderTime = parseDate(timeValue);
       
       if (!reminderTime) {
-        console.error(`Failed to parse ${item.type} time:`, timeValue);
+        (`Failed to parse ${item.type} time:`, timeValue);
         return false;
       }
       
@@ -201,7 +201,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
       const reminderTime = parseDate(timeValue);
   
       if (!reminderTime) {
-        console.error(`Failed to parse time for ${itemName}:`, timeValue);
+        (`Failed to parse time for ${itemName}:`, timeValue);
         return;
       }
   
@@ -260,7 +260,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
             try {
               await onClearReminder(reminder.id, reminder.type);
             } catch (error) {
-              console.error('Error clearing task reminder:', error);
+              ('Error clearing task reminder:', error);
             }
           }
         });
@@ -299,7 +299,7 @@ const ReminderScheduler = ({ items = [], onClearReminder }) => {
                 try {
                   await onClearReminder(reminder.id, reminder.type);
                 } catch (error) {
-                  console.error('Error clearing task reminder:', error);
+                  ('Error clearing task reminder:', error);
                 }
               }
             });

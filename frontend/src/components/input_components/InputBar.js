@@ -37,8 +37,8 @@ const InputBar = ({
 
   useEffect(() => {
     if (newTaskDefaults) {
-      console.log("InputBar received task defaults:", newTaskDefaults);
-      console.log("nodeContext in defaults:", newTaskDefaults.nodeContext);
+      ("InputBar received task defaults:", newTaskDefaults);
+      ("nodeContext in defaults:", newTaskDefaults.nodeContext);
     }
   }, [newTaskDefaults]);
 
@@ -101,7 +101,7 @@ const InputBar = ({
       setInputType(null);
       setTaskToEdit(null);
     } catch (error) {
-      console.error('Error handling task:', error);
+      ('Error handling task:', error);
     }
   };
 
@@ -119,7 +119,7 @@ const InputBar = ({
       setReminderToEdit(null);
       
     } catch (error) {
-      console.error('Error handling reminder:', error);
+      ('Error handling reminder:', error);
     }
   };
 

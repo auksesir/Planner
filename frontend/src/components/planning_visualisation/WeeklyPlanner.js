@@ -11,39 +11,84 @@ import Sphere from '../planning_utilities/Sphere';
 import DailyPlanner from './DailyPlanner';
 import DayCell from './DayCell';
 
+/**
+ * WeeklyPlanner Component
+ * 
+ * A comprehensive weekly planning interface that provides both grid and individual day views.
+ * Features dynamic height calculations, event management, and seamless integration with daily planning.
+ * 
+ * Key Features:
+ * - Dual view modes: Weekly grid view and single day detailed view
+ * - Dynamic hour height calculations based on event density
+ * - Real-time data synchronization with Redux state management
+ * - Event CRUD operations with support for recurring items
+ * - Responsive design with horizontal scrolling for weekly view
+ * - Date navigation with year/month selectors and week navigation
+ * - Integration with task and reminder management systems
+ * 
+ * @param {Function} setTaskToEdit - Callback to set a task for editing
+ * @param {Function} setReminderToEdit - Callback to set a reminder for editing
+ */
 const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
+  
+  // ==================== CORE STATE ====================
+  
+  // Date and navigation state
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState(today);
-  const [weekDays, setWeekDays] = useState([]);
-  const [showAllDays, setShowAllDays] = useState(true);
-  const [activeDay, setActiveDay] = useState(today);
-  const [weeklyTasks, setWeeklyTasks] = useState({});
-  const [weeklyReminders, setWeeklyReminders] = useState({});
-  const [hourHeights, setHourHeights] = useState({});
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [itemType, setItemType] = useState(null);
-  const [isRepeatingItem, setIsRepeatingItem] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(today);        // Currently selected week anchor date
+  const [weekDays, setWeekDays] = useState([]);                   // Array of 7 days in current week
+  const [activeDay, setActiveDay] = useState(today);              // Currently focused day in single day view
+  
+  // View state
+  const [showAllDays, setShowAllDays] = useState(true);           // Toggle between grid view and single day view
+  
+  // Data state
+  const [weeklyTasks, setWeeklyTasks] = useState({});             // Tasks organized by date string (YYYY-MM-DD)
+  const [weeklyReminders, setWeeklyReminders] = useState({});     // Reminders organized by date string
+  const [hourHeights, setHourHeights] = useState({});             // Dynamic heights for each hour based on event density
+  
+  // Modal and deletion state
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);     // Delete confirmation modal visibility
+  const [selectedItemId, setSelectedItemId] = useState(null);            // ID of item to delete
+  const [selectedItem, setSelectedItem] = useState(null);                // Full object of item to delete
+  const [itemType, setItemType] = useState(null);                        // 'task' or 'reminder'
+  const [isRepeatingItem, setIsRepeatingItem] = useState(false);         // Whether item has repeat settings
 
+  // ==================== REDUX INTEGRATION ====================
+  
   const dispatch = useDispatch();
-  const settings = useSelector(state => state.settings || {});
-  const dailyPlannerFlag = useSelector(state => state.dailyPlannerFlag);
+  const settings = useSelector(state => state.settings || {});           // User preferences for time display
+  const dailyPlannerFlag = useSelector(state => state.dailyPlannerFlag); // Flag to trigger data refresh
 
+  // ==================== COMPONENT LIFECYCLE ====================
+  
+  /**
+   * Component Mount/Unmount Effect
+   * Notifies Redux that the weekly grid is open/closed for proper state management
+   */
   useEffect(() => {
-    // Dispatch when component mounts/unmounts
     dispatch(setWeeklyGridOpen(true));
     return () => dispatch(setWeeklyGridOpen(false));
   }, [dispatch]);
 
-  // Initialize week days
+  /**
+   * Week Days Initialization
+   * Calculates the 7 days of the current week based on selected date
+   * Week starts on Sunday (weekStartsOn: 0)
+   */
   useEffect(() => {
     const start = startOfWeek(selectedDate, { weekStartsOn: 0 });
     const days = [...Array(7)].map((_, i) => addDays(start, i));
     setWeekDays(days);
   }, [selectedDate]);
 
-  // Update your useEffect that watches dailyPlannerFlag
+  // ==================== DATA REFRESH MANAGEMENT ====================
+  
+  /**
+   * Redux Flag-Triggered Data Refresh
+   * Monitors dailyPlannerFlag and refreshes weekly data when external changes occur
+   * This ensures the weekly view stays synchronized with other parts of the application
+   */
   useEffect(() => {
     const refreshData = async () => {
       if (weekDays.length > 0) {
@@ -65,15 +110,29 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     }
   }, [dailyPlannerFlag, weekDays, dispatch]);
 
-  // Calculate maximum tasks per hour across all days
+  // ==================== DYNAMIC HEIGHT CALCULATIONS ====================
+  
+  /**
+   * Calculate Hour Heights Based on Event Density
+   * 
+   * Dynamically calculates the height for each hour slot based on the maximum number
+   * of concurrent events across all days of the week. This ensures proper spacing
+   * and prevents overlapping in the weekly grid view.
+   * 
+   * Algorithm:
+   * 1. For each hour (0-23), check all 7 days
+   * 2. Count tasks and reminders that occur during that hour
+   * 3. Find the maximum event count across all days for that hour
+   * 4. Calculate height: base 60px + 24px per additional event
+   */
   const calculateHourHeights = useMemo(() => {
     if (Object.keys(weeklyTasks).length === 0) return {};
     
     const heights = {};
     
-    // Get all visible hours from settings
+    // Get all visible hours from settings (currently all 24 hours)
     const visibleHours = Array.from({ length: 24 }, (_, i) => i).filter(hour => {
-      // Here you would filter based on your settings
+      // Future enhancement: filter based on user settings
       return true; // For now, include all hours
     });
     
@@ -86,10 +145,9 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
         const dayTasks = weeklyTasks[dayStr] || [];
         const dayReminders = weeklyReminders[dayStr] || [];
         
-        // Count events in this hour
         let eventsInHour = 0;
         
-        // Count tasks
+        // Count tasks that span or occur during this hour
         dayTasks.forEach(task => {
           const taskStartHour = getHours(new Date(task.startTime));
           const taskEndHour = getHours(new Date(task.endTime));
@@ -99,7 +157,7 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
           }
         });
         
-        // Count reminders
+        // Count reminders that occur during this hour
         dayReminders.forEach(reminder => {
           const reminderTime = reminder.selectedTime || reminder.time;
           if (reminderTime) {
@@ -113,7 +171,7 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
         maxEventsCount = Math.max(maxEventsCount, eventsInHour);
       });
       
-      // Calculate height based on event count (base height + additional height per event)
+      // Calculate height: base height + additional height per event
       // Base height of 60px + 24px per event after the first
       heights[hour] = maxEventsCount <= 1 ? 60 : 60 + ((maxEventsCount - 1) * 24);
     });
@@ -121,7 +179,12 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     return heights;
   }, [weeklyTasks, weeklyReminders, weekDays]);
 
-  // Fetch weekly data on initial load
+  // ==================== INITIAL DATA LOADING ====================
+  
+  /**
+   * Fetch Weekly Data on Week Change
+   * Loads tasks and reminders for all 7 days when week changes
+   */
   useEffect(() => {
     if (weekDays.length > 0) {
       const loadWeekData = async () => {
@@ -145,12 +208,18 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     }
   }, [weekDays]);
 
-  // Update hour heights when tasks or reminders change
+  /**
+   * Update Hour Heights When Data Changes
+   * Recalculates dynamic heights whenever tasks or reminders are updated
+   */
   useEffect(() => {
     setHourHeights(calculateHourHeights);
   }, [weeklyTasks, weeklyReminders, calculateHourHeights]);
 
-  // Monitor state updates and ensure proper scrolling
+  /**
+   * DOM Update and Scroll Management
+   * Ensures proper scrolling behavior after state updates
+   */
   useEffect(() => {    
     // Add a small delay to ensure the DOM has updated
     setTimeout(() => {
@@ -162,15 +231,29 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     }, 100);
   }, [weeklyTasks, weeklyReminders, hourHeights]);
 
+  // ==================== EVENT HANDLERS ====================
+  
+  /**
+   * Handle day click in weekly grid view
+   * Switches to single day view and sets the clicked day as active
+   */
   const handleDayClick = (date) => {
     setActiveDay(date);
     setShowAllDays(false);
   };
 
+  /**
+   * Handle day selection in single day view
+   * Changes the active day without changing view mode
+   */
   const handleDaySelect = (date) => {
     setActiveDay(date);
   };
 
+  /**
+   * Handle event editing
+   * Sets the appropriate day as active and triggers edit mode for tasks/reminders
+   */
   const handleEventEdit = (event) => {
     // Update active day without changing the view mode
     const eventDate = new Date(event.selectedDay || event.startTime || event.time);
@@ -183,6 +266,10 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     }
   };
 
+  /**
+   * Handle event deletion initiation
+   * Opens delete confirmation modal with event details
+   */
   const handleDeleteEvent = (event) => {
     setSelectedItemId(event.id);
     setSelectedItem(event);
@@ -191,6 +278,9 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     setIsDeleteModalOpen(true);
   };
 
+  /**
+   * Close delete modal and reset related state
+   */
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
     setSelectedItem(null);
@@ -199,13 +289,19 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     setIsRepeatingItem(false);
   };
 
+  /**
+   * Confirm and execute event deletion
+   * Handles both single instance and recurring event deletion
+   * 
+   * @param {boolean} deleteAll - Whether to delete all instances of recurring events
+   */
   const confirmDelete = async (deleteAll = false) => {
     if (selectedItemId !== null && selectedItem !== null) {
       const dateObj = selectedItem.selectedDay ? 
         new Date(selectedItem.selectedDay) : 
         new Date(selectedItem.startTime || selectedItem.time);
       
-      // Format date as YYYY-MM-DD
+      // Format date as YYYY-MM-DD for API consistency
       const selectedDate = dateObj.toISOString().split('T')[0];
       
       try {
@@ -219,7 +315,7 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
           result = await deleteReminder(selectedItemId, deleteAll, selectedDate);
         }
         
-        // Set the flag to trigger a refresh
+        // Set the flag to trigger a refresh across the application
         dispatch(setSelectedDayFlag(true));
       } catch (error) {
         console.error('Error deleting item:', error);
@@ -229,37 +325,61 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
     closeDeleteModal();
   };
 
+  // ==================== VIEW NAVIGATION ====================
+  
+  /**
+   * Toggle between weekly grid view and single day view
+   */
   const toggleView = () => {
     setShowAllDays(!showAllDays);
   };
 
+  /**
+   * Handle year change in date selector
+   */
   const handleYearChange = (e) => {
     const newDate = new Date(selectedDate);
     newDate.setFullYear(parseInt(e.target.value));
     setSelectedDate(newDate);
   };
 
+  /**
+   * Handle month change in date selector
+   */
   const handleMonthChange = (e) => {
     const newDate = new Date(selectedDate);
     newDate.setMonth(getMonthsArray().indexOf(e.target.value));
     setSelectedDate(newDate);
   };
 
+  /**
+   * Navigate to previous week
+   */
   const handlePrevWeek = () => {
     setSelectedDate(prev => addDays(prev, -7));
   };
 
+  /**
+   * Navigate to next week
+   */
   const handleNextWeek = () => {
     setSelectedDate(prev => addDays(prev, 7));
   };
 
-  // Prepare data for the active day with proper formatting
+  // ==================== DATA PREPARATION ====================
+  
+  /**
+   * Prepare Active Day Data for Single Day View
+   * 
+   * Formats and groups tasks/reminders for the currently active day
+   * Groups items by time slots for proper rendering in DailyPlanner component
+   */
   const prepareActiveDayData = useMemo(() => {
     const activeDayStr = format(activeDay, 'yyyy-MM-dd');
     const activeDayTasks = weeklyTasks[activeDayStr] || [];
     const activeDayReminders = weeklyReminders[activeDayStr] || [];
     
-    // Group tasks and reminders by time slot
+    // Group tasks and reminders by time slot for DailyPlanner component
     const groupedTasks = groupItemsByTimeSlot(activeDayTasks, 'startTime', 'endTime');
     const groupedReminders = groupItemsByTimeSlot(activeDayReminders, 'selectedTime', 'selectedTime');
     
@@ -267,12 +387,15 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
       dayStr: activeDayStr,
       tasks: groupedTasks,
       reminders: groupedReminders,
-      
     };
-  }, [activeDay, weeklyTasks, weeklyReminders, today]);
+  }, [activeDay, weeklyTasks, weeklyReminders]);
+
+  // ==================== RENDER ====================
 
   return (
     <div className="weekly-planner">
+      
+      {/* ==================== DATE NAVIGATION ==================== */}
       <div className="date-selectors">
         <label>
           Year:
@@ -301,6 +424,7 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
         </label>
       </div>
 
+      {/* Week Navigation and View Toggle */}
       <div>
         <button onClick={handlePrevWeek}>←</button>
         <button onClick={toggleView}>
@@ -309,7 +433,10 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
         <button onClick={handleNextWeek}>→</button>
       </div>
 
+      {/* ==================== CONDITIONAL VIEW RENDERING ==================== */}
+      
       {showAllDays ? (
+        /* Weekly Grid View - Shows all 7 days in a scrollable grid */
         <div className="weekly-scroll-container" id="weekly-scroll">
           <div className="weekly-content-wrapper">
             <div className="week-grid">
@@ -325,7 +452,7 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
                   settings={settings}
                   onEventEdit={handleEventEdit}
                   onEventDelete={handleDeleteEvent}
-                  hourHeights={hourHeights}
+                  hourHeights={hourHeights} // Dynamic heights based on event density
                 />
               );
             })}
@@ -333,7 +460,9 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
           </div>
         </div>
       ) : (
+        /* Single Day View - Shows day selector and detailed daily planner */
         <>
+          {/* Day Selector Row */}
           <div className="calendar-grid">
             {weekDays.map((date, index) => (
               <div
@@ -346,29 +475,35 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
               </div>
             ))}
           </div>
+          
+          {/* Detailed Daily Planner */}
           <div className="daily-planner-container">
             <DailyPlanner
               day={prepareActiveDayData.dayStr}
               tasks={prepareActiveDayData.tasks}
               reminders={prepareActiveDayData.reminders}
-              isCurrentDay={false}
+              isCurrentDay={false} // This is always false since it's a weekly view
               setTaskToEdit={setTaskToEdit}
               setReminderToEdit={setReminderToEdit}
-              DailyPlanner context="weekly"
+              context="weekly" // Context for styling differences
             />
           </div>
         </>
       )}
       
+      {/* ==================== MODAL DIALOGS ==================== */}
+      
+      {/* Delete Confirmation Modal */}
       <DeleteTaskModal
         isOpen={isDeleteModalOpen}
         isRepeatingTask={isRepeatingItem}
         onClose={closeDeleteModal}
-        onDeleteSingle={() => confirmDelete(false)}
-        onDeleteAll={() => confirmDelete(true)}
+        onDeleteSingle={() => confirmDelete(false)}  // Delete single instance
+        onDeleteAll={() => confirmDelete(true)}      // Delete all instances
         itemType={itemType}
       />
       
+      {/* Sphere Component - Additional UI element */}
       <Sphere />
     </div>
   );

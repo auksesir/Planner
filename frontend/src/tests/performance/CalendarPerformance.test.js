@@ -73,7 +73,7 @@ const measurePerformance = async (operation, label) => {
   const endTime = performance.now();
   const duration = endTime - startTime;
   
-  console.log(`${label}: ${duration.toFixed(2)}ms`);
+  (`${label}: ${duration.toFixed(2)}ms`);
   return { result, duration };
 };
 
@@ -188,7 +188,7 @@ describe('Calendar Performance Tests', () => {
     test('should not create memory leaks with large datasets', async () => {
       // Only run if performance.memory is available
       if (!performance.memory) {
-        console.log('Memory testing not available in this environment');
+        ('Memory testing not available in this environment');
         return;
       }
 
@@ -216,7 +216,7 @@ describe('Calendar Performance Tests', () => {
       const finalMemory = performance.memory.usedJSHeapSize;
       const memoryIncrease = finalMemory - initialMemory;
       
-      console.log(`Memory increase: ${(memoryIncrease / 1024 / 1024).toFixed(2)}MB`);
+      (`Memory increase: ${(memoryIncrease / 1024 / 1024).toFixed(2)}MB`);
       
       // Memory increase should be reasonable (less than 10MB for this test)
       expect(memoryIncrease).toBeLessThan(10 * 1024 * 1024);
@@ -272,7 +272,7 @@ describe('Calendar Performance Tests', () => {
       
       // This is the key NFR 1.3 requirement
       expect(duration).toBeLessThan(1000);
-      console.log(`✅ NFR 1.3 ${duration < 1000 ? 'PASSED' : 'FAILED'}: Calendar loaded in ${duration.toFixed(2)}ms`);
+      (`✅ NFR 1.3 ${duration < 1000 ? 'PASSED' : 'FAILED'}: Calendar loaded in ${duration.toFixed(2)}ms`);
     });
 
     test('switching between calendar views should be fast', async () => {
@@ -340,7 +340,7 @@ describe('Calendar Performance Tests', () => {
       
       // Should handle heavy loads in under 2 seconds
       expect(duration).toBeLessThan(2000);
-      console.log(`Heavy load performance: ${duration.toFixed(2)}ms`);
+      (`Heavy load performance: ${duration.toFixed(2)}ms`);
     });
   });
 
@@ -367,7 +367,7 @@ describe('Calendar Performance Tests', () => {
         };
       }
       
-      console.log('Performance Benchmark Results:', results);
+      ('Performance Benchmark Results:', results);
       
       // Verify that performance scales reasonably
       // Processing time should not increase exponentially
@@ -381,3 +381,4 @@ describe('Calendar Performance Tests', () => {
 export {
     createMockReminders, createMockTasks, measurePerformance
 };
+

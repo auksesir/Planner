@@ -14,16 +14,16 @@ const CombinedSphere = ({ currentTask }) => {
       const [day, month, year] = datePart.split('/');
       return new Date(`${year}-${month}-${day}T${timePart}`);
     } catch (error) {
-      console.error('Error parsing date string:', dateStr, error);
+      ('Error parsing date string:', dateStr, error);
       return new Date(); // Return current date as fallback
     }
   };
 
   // Log when current task changes to help with debugging
   useEffect(() => {
-    console.log('CombinedSphere received task:', currentTask);
+    ('CombinedSphere received task:', currentTask);
     if (currentTask) {
-      console.log('Task repeat option:', currentTask.repeatOption);
+      ('Task repeat option:', currentTask.repeatOption);
     }
   }, [currentTask]);
 
@@ -103,7 +103,7 @@ const CombinedSphere = ({ currentTask }) => {
             return timeLeftSeconds;
           }
         } catch (error) {
-          console.error('Error updating timer:', error);
+          ('Error updating timer:', error);
           return 0;
         }
       };

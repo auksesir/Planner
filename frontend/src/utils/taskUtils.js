@@ -25,7 +25,7 @@ export const handleAddOrUpdateTask = async (
         const parsedDate = new Date(dateStr);
         
         if (isNaN(parsedDate)) {
-          console.error(`Failed to parse ${fieldName}:`, dateStr);
+          (`Failed to parse ${fieldName}:`, dateStr);
           return null;
         }
         
@@ -34,7 +34,7 @@ export const handleAddOrUpdateTask = async (
       
       return null;
     } catch (error) {
-      console.error(`Parsing error for ${fieldName}:`, error);
+      (`Parsing error for ${fieldName}:`, error);
       return null;
     }
   };
@@ -48,13 +48,13 @@ export const handleAddOrUpdateTask = async (
       const time = new Date(timeStr);
       
       if (isNaN(time)) {
-        console.error('Invalid time value:', timeStr);
+        ('Invalid time value:', timeStr);
         return null;
       }
 
       return format(time, 'dd/MM/yyyy, HH:mm:ss');
     } catch (error) {
-      console.error('Time conversion error:', {
+      ('Time conversion error:', {
         input: timeStr,
         error: error.message,
         stack: error.stack
@@ -73,7 +73,7 @@ export const handleAddOrUpdateTask = async (
       const selectedDay = safeParseDate(task.selectedDay, 'task.selectedDay');
 
       if (!originalStartDay || !selectedDay) {
-        console.error('CRITICAL: Invalid dates', {
+        ('CRITICAL: Invalid dates', {
           originalStartDay,
           selectedDay,
           originalStartDayInput: taskToEdit.originalStartDay,
@@ -104,7 +104,7 @@ export const handleAddOrUpdateTask = async (
             endTime: endTimeStr || taskToEdit.endTime
           });
         } catch (deletionError) {
-          console.error('Error during task deletion:', deletionError);
+          ('Error during task deletion:', deletionError);
         }
       }
 
@@ -118,7 +118,7 @@ export const handleAddOrUpdateTask = async (
     }
 
   } catch (error) {
-    console.error('COMPLETE ERROR DETAILS:', {
+    ('COMPLETE ERROR DETAILS:', {
       message: error.message,
       stack: error.stack,
       name: error.name
@@ -167,7 +167,7 @@ const addTaskToCurrentDay = (task, addTask) => {
       }
     }
   } catch (error) {
-    console.error('Error in addTaskToCurrentDay:', error);
+    ('Error in addTaskToCurrentDay:', error);
   }
 };
 
@@ -237,7 +237,7 @@ export const submitTask = async (newTask, isEditing, taskToEdit) => {
   }
 
   // Log the API response
-  console.log('API response:', result);
+  ('API response:', result);
 
   // Return the complete result with all flags
   return { 
@@ -359,6 +359,6 @@ export const loadTasksAndReminders = async (date, dispatch) => {
     const remindersForDay = await getRemindersForDay(date);
     remindersForDay.forEach(reminder => dispatch(addReminder(reminder)));
   } catch (error) {
-    console.error('Error loading tasks and reminders:', error.message);
+    ('Error loading tasks and reminders:', error.message);
   }
 };

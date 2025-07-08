@@ -69,7 +69,7 @@ export const projectsApi = {
                 projectData.endDate) : null)
       };
 
-      console.log('Sending project data:', formattedProjectData); // Debug log
+      ('Sending project data:', formattedProjectData); // Debug log
 
       const response = await apiPost(`${API_BASE_URL}/projects`, formattedProjectData);
       
@@ -88,7 +88,7 @@ export const projectsApi = {
         defaultApiErrorHandler
       );
     } catch (error) {
-      console.error('Error in createProject:', error); // Debug log
+      ('Error in createProject:', error); // Debug log
       return defaultApiErrorHandler({
         message: 'Failed to create project',
         originalError: error

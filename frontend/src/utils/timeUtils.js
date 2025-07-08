@@ -46,7 +46,7 @@ export const groupItemsByTimeSlot = (items, timeField, endTimeField = null) => {
     }
 
     if (isNaN(timeDate.getTime())) {
-      console.error('Invalid date for item:', item);
+      ('Invalid date for item:', item);
       return;
     }
 
@@ -226,7 +226,7 @@ export const formatDateToISO = (date) => {
     const newDate = new Date(date);
     return format(newDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
   } catch (error) {
-    console.error('Invalid date format:', date);
+    ('Invalid date format:', date);
     return null;
   }
 };
@@ -380,7 +380,7 @@ export const parseDate = (dateStr) => {
     const date = new Date(dateStr);
     return isNaN(date.getTime()) ? null : date;
   } catch (error) {
-    console.error('Date parsing error:', error, 'for input:', dateStr);
+    ('Date parsing error:', error, 'for input:', dateStr);
     return null;
   }
 };
@@ -421,7 +421,7 @@ export const formatTimeForRedux = (timeString) => {
 
     return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
   } catch (error) {
-    console.error('Error formatting time for Redux:', error);
+    ('Error formatting time for Redux:', error);
     return timeString;
   }
 };
@@ -513,12 +513,12 @@ export const formatDateForDB = (date) => {
         ));
       }
     } else {
-      console.error('Unsupported date format:', date);
+      ('Unsupported date format:', date);
       return null;
     }
     
     if (isNaN(dateObj.getTime())) {
-      console.error('Invalid date value:', date);
+      ('Invalid date value:', date);
       return null;
     }
     
@@ -529,7 +529,7 @@ export const formatDateForDB = (date) => {
     
     return `${year}-${month}-${day}`;
   } catch (error) {
-    console.error('Error formatting date for DB:', error);
+    ('Error formatting date for DB:', error);
     return null;
   }
 };
@@ -564,7 +564,7 @@ export const parseDateSafely = (dateInput) => {
     
     return null;
   } catch (error) {
-    console.error('Error parsing date:', error);
+    ('Error parsing date:', error);
     return null;
   }
 };

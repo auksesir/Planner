@@ -47,7 +47,7 @@ export const organizeRemindersByDay = (reminders) => {
         selectedTime: reminderTime // Ensure selectedTime is always set
       });
     } catch (error) {
-      console.error('Error processing reminder:', error, reminder);
+      ('Error processing reminder:', error, reminder);
     }
 
     return acc;
@@ -77,7 +77,7 @@ export const fetchWeekData = async (weekDays) => {
       reminders: organizedReminders
     };
   } catch (error) {
-    console.error('Error in fetchWeekData:', error);
+    ('Error in fetchWeekData:', error);
     // Return empty objects instead of throwing to prevent UI crashes
     return {
       tasks: {},

@@ -19,5 +19,5 @@ root.render(
 );
 
 reportWebVitals((metric) => {
-  console.log(`[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} ms`);
+  (`[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} ms`);
 });

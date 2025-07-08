@@ -13,16 +13,16 @@ import { ClearIcon, RepeatIcon } from '../../icons/index';
 import { setSelectedDayFlag } from '../../redux/tasks/actions/dailyPlannerFlagActions';
 import '../../styles/components/input_components/TaskInputBar.css';
 import {
-  shouldRefetchDayView
+    shouldRefetchDayView
 } from '../../utils/sharedUtils';
 import {
-  clearInputField as clearTaskInputField,
-  submitTask
+    clearInputField as clearTaskInputField,
+    submitTask
 } from '../../utils/taskUtils';
 import {
-  adjustTimeToSelectedDay,
-  calculateEndTime,
-  formatDate2
+    adjustTimeToSelectedDay,
+    calculateEndTime,
+    formatDate2
 } from '../../utils/timeUtils';
 
 
@@ -60,7 +60,7 @@ const TaskInputBar = ({ onAddOrUpdateTask, onCancel, currentDay, selectedDayUI, 
   // Handle defaults for new tasks (doesn't trigger edit mode)
   useEffect(() => {
     if (defaultValues && !taskToEdit) {
-      console.log("Setting task state from defaultValues:", defaultValues);
+      ("Setting task state from defaultValues:", defaultValues);
       
       // Save nodeContext separately to make sure it doesn't get lost
       if (defaultValues.nodeContext) {
@@ -129,7 +129,7 @@ const TaskInputBar = ({ onAddOrUpdateTask, onCancel, currentDay, selectedDayUI, 
       setIsEditing(true);
   
       // Debug logs
-      console.log("Processed dates:", {
+      ("Processed dates:", {
         selectedDay: taskState.selectedDay?.toISOString(),
         startTime: taskState.startTime?.toISOString(),
         endTime: taskState.endTime?.toISOString()
@@ -296,7 +296,7 @@ const TaskInputBar = ({ onAddOrUpdateTask, onCancel, currentDay, selectedDayUI, 
               }));
             
           } catch (linkError) {
-            console.error('Error linking task to node:', linkError);
+            ('Error linking task to node:', linkError);
             toast.error('Task created but failed to link as subnode');
           }
         }
@@ -330,7 +330,7 @@ const TaskInputBar = ({ onAddOrUpdateTask, onCancel, currentDay, selectedDayUI, 
         }
       }
     } catch (error) {
-      console.error('Task submission error:', error);
+      ('Task submission error:', error);
       toast.error(error.message, {
         position: "top-center",
       });

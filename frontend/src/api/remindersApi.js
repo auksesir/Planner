@@ -68,12 +68,12 @@ export const remindersApi = {
           }));
         },
         (error) => {
-          console.error("Error processing reminders:", error);
+          ("Error processing reminders:", error);
           return []; // Return empty array on error
         }
       );
     } catch (error) {
-      console.error('Failed to fetch reminders for the day:', error);
+      ('Failed to fetch reminders for the day:', error);
       return []; // Return empty array for consistency
     }
   },
@@ -94,12 +94,12 @@ export const remindersApi = {
           }));
         },
         (error) => {
-          console.error('Error fetching weekly reminders:', error);
+          ('Error fetching weekly reminders:', error);
           return []; // Return empty array on error for this specific API
         }
       );
     } catch (error) {
-      console.error('Error fetching weekly reminders:', error);
+      ('Error fetching weekly reminders:', error);
       return []; // Return empty array in case of exception
     }
   },

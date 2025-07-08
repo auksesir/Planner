@@ -128,7 +128,7 @@ const SettingsModal = ({ open, onClose }) => {
       setError(null);
       try {
         const settings = await getUserSettings();
-        console.log('Loaded settings:', settings);
+        ('Loaded settings:', settings);
         setStartHour(settings.start_hour);
         setEndHour(settings.end_hour);
         setHiddenHours(settings.hidden_hours || []);
@@ -136,7 +136,7 @@ const SettingsModal = ({ open, onClose }) => {
         // Update Redux when settings are loaded
         dispatch(setTimeSlotSettings(settings));
       } catch (err) {
-        console.error('Error loading settings:', err);
+        ('Error loading settings:', err);
         setError('Failed to load settings');
       } finally {
         setLoading(false);
@@ -173,11 +173,11 @@ const SettingsModal = ({ open, onClose }) => {
       }));
       
       // Log to verify the dispatch
-      console.log('Dispatching settings update:', settings);
+      ('Dispatching settings update:', settings);
       
       onClose();
     } catch (err) {
-      console.error('Error saving settings:', err);
+      ('Error saving settings:', err);
       setError('Failed to save settings');
     }
   };
@@ -197,7 +197,7 @@ const SettingsModal = ({ open, onClose }) => {
     try {
       await playNotificationSound(type, volume);
     } catch (error) {
-      console.error('Error playing test sound:', error);
+      ('Error playing test sound:', error);
       setError('Failed to play test sound. Your browser may block audio playback.');
     }
   };

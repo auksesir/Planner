@@ -19,7 +19,7 @@ export const playNotificationSound = (soundType = 'reminder', volume = null) => 
       
       // If sounds are disabled in settings, resolve immediately without playing
       if (!soundSettings.enabled) {
-        console.log('Sound notifications are disabled in settings');
+        ('Sound notifications are disabled in settings');
         resolve();
         return;
       }
@@ -58,7 +58,7 @@ export const playNotificationSound = (soundType = 'reminder', volume = null) => 
       };
       
       audio.onerror = (error) => {
-        console.error('Error playing notification sound:', error);
+        ('Error playing notification sound:', error);
         reject(error);
       };
       
@@ -66,11 +66,11 @@ export const playNotificationSound = (soundType = 'reminder', volume = null) => 
       audio.play()
         .catch(error => {
           // Most common error: browsers require user interaction before playing audio
-          console.error('Error playing notification sound:', error);
+          ('Error playing notification sound:', error);
           reject(error);
         });
     } catch (error) {
-      console.error('Error setting up audio:', error);
+      ('Error setting up audio:', error);
       reject(error);
     }
   });
@@ -98,9 +98,9 @@ export const preloadNotificationSounds = () => {
       // Store in cache
       audioCache[type] = audio;
       
-      console.log(`Preloaded ${type} notification sound`);
+      (`Preloaded ${type} notification sound`);
     } catch (error) {
-      console.error(`Error preloading ${type} sound:`, error);
+      (`Error preloading ${type} sound:`, error);
     }
   });
 };

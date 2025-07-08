@@ -238,7 +238,7 @@ const ErrorTypes = {
     } else {
       return onError ? 
         onError(response.error) : 
-        console.error(`API Error: ${response.error.message}`, response.error);
+        (`API Error: ${response.error.message}`, response.error);
     }
   };
 
@@ -248,7 +248,7 @@ const ErrorTypes = {
    * @returns {Object} - Object with error property
    */
   export const defaultApiErrorHandler = (error) => {
-    console.error('API Error:', error);
+    ('API Error:', error);
     toast.error(error.message || 'An unexpected error occurred', {
       position: "top-center"
     });
@@ -256,6 +256,7 @@ const ErrorTypes = {
   };
   
   export {
-  ErrorTypes,
-  formatError
+    ErrorTypes,
+    formatError
 };
+

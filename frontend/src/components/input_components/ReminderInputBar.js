@@ -9,10 +9,10 @@ import { setSelectedDayFlag } from '../../redux/tasks/actions/dailyPlannerFlagAc
 import '../../styles/components/input_components/ReminderInputBar.css';
 import { clearForm, clearInputField, submitReminder } from '../../utils/reminderUtils';
 import {
-  shouldRefetchDayView
+    shouldRefetchDayView
 } from '../../utils/sharedUtils';
 import {
-  formatDate2
+    formatDate2
 } from '../../utils/timeUtils';
 
 
@@ -73,7 +73,7 @@ const ReminderInputBar = ({ onAddOrUpdateReminder, onCancel, reminderToEdit, sel
       setIsEditing(true);
   
       // Debug logs
-      console.log("Processed reminder edit dates:", {
+      ("Processed reminder edit dates:", {
         selectedDay: reminderState.selectedDay?.toISOString(),
         selectedTime: reminderState.selectedTime?.toISOString(),
         repeatEndDay: reminderState.repeatEndDay?.toISOString()
@@ -159,10 +159,10 @@ const ReminderInputBar = ({ onAddOrUpdateReminder, onCancel, reminderToEdit, sel
       selectedDayUI: selectedDayUI
     };
 
-    console.log("asaas", newReminder);
+    ("asaas", newReminder);
     
     // Debug log to verify the date parts match
-    console.log("Submitting reminder with adjusted time:", {
+    ("Submitting reminder with adjusted time:", {
       selectedDay: selectedDay.toISOString(),
       originalSelectedTime: selectedTime.toISOString(),
       adjustedSelectedTime: adjustedSelectedTime.toISOString()
@@ -205,7 +205,7 @@ const ReminderInputBar = ({ onAddOrUpdateReminder, onCancel, reminderToEdit, sel
         }
       }
     } catch (error) {
-      console.error('Reminder submission error:', {
+      ('Reminder submission error:', {
         error: error.message,
         stack: error.stack,
         reminder: newReminder,

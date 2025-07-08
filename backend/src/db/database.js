@@ -80,6 +80,7 @@ await db.exec(`
         start_hour TEXT NOT NULL DEFAULT '12:00 AM',
         end_hour TEXT NOT NULL DEFAULT '11:00 PM',
         hidden_hours TEXT DEFAULT '[]',
+        sound_settings TEXT DEFAULT '{"enabled":true,"volume":0.7,"reminderSound":"default","taskSound":"default"}',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT (datetime('now','localtime'))
       )

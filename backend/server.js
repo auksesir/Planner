@@ -1,4 +1,6 @@
 // server.js
+require('dotenv').config(); 
+
 const express = require('express');
 const cors = require('cors');
 const { initializeDatabase } = require('./src/db/database');
@@ -17,9 +19,12 @@ const pomodoroRouter = require('./src/routes/pomodoro'); // Add this line
     const PORT = process.env.PORT || 3001;
 
     app.use(cors({
-      origin: '*', // Allow all origins in development
+      origin: process.env.NODE_ENV === 'production' 
+        ? (process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : false)
+        : ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000'],
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization']
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true
     }));
 
     // Middleware
@@ -59,9 +64,11 @@ const pomodoroRouter = require('./src/routes/pomodoro'); // Add this line
     app.use((err, req, res, next) => {
       console.error('Error:', err);
       
-      // Ensure we're always sending JSON
+      // Don't expose detailed errors in production
       res.status(err.status || 500).json({
-        error: err.message || 'Internal Server Error',
+        error: process.env.NODE_ENV === 'development' 
+          ? (err.message || 'Internal Server Error')
+          : 'Internal Server Error',
         ...(process.env.NODE_ENV === 'development' ? { stack: err.stack } : {})
       });
     });

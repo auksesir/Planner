@@ -34,7 +34,7 @@ export default function TaskReminderIcon({
       const date = new Date(dateStr);
       return !isNaN(date.getTime()) ? date : null;
     } catch (error) {
-      console.error('Date parsing error:', error);
+      ('Date parsing error:', error);
       return null;
     }
   };
@@ -44,7 +44,7 @@ export default function TaskReminderIcon({
     const taskStart = parseDateString(taskStartTime);
     
     if (!taskStart) {
-      console.error('Failed to parse task start time:', taskStartTime);
+      ('Failed to parse task start time:', taskStartTime);
       return true; // Conservatively hide the reminder if parsing fails
     }
 

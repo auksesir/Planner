@@ -96,7 +96,7 @@ describe('taskUtils', () => {
         const result = await submitTask(newTask, false, null);
         
         // Add debug logging to see the actual result
-        console.log('FIRST TEST RESULT:', JSON.stringify(result));
+        ('FIRST TEST RESULT:', JSON.stringify(result));
         
         // Assertions
         expect(result.result.success).toBe(true);

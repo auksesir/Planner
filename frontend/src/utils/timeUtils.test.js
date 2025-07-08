@@ -25,7 +25,7 @@ import {
       // Reset date-fns mocks between tests
       jest.clearAllMocks();
       
-      // Spy on console.error to suppress expected errors during testing
+      // Spy on  to suppress expected errors during testing
       jest.spyOn(console, 'error').mockImplementation(() => {});
     });
   

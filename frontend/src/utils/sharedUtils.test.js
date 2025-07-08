@@ -191,7 +191,7 @@ describe('sharedUtils', () => {
         parseDate(item.selectedTime);
       
       if (!itemTime) {
-        console.log(`Failed to parse time for ${type}:`, item);
+        (`Failed to parse time for ${type}:`, item);
         return;
       }
       
@@ -217,7 +217,7 @@ describe('sharedUtils', () => {
     };
     
     beforeEach(() => {
-      // Mock console.log to prevent too much output
+      // Mock  to prevent too much output
       jest.spyOn(console, 'log').mockImplementation(() => {});
       
       // Temporarily replace the real function with our mock
@@ -229,7 +229,7 @@ describe('sharedUtils', () => {
       sharedUtils.createReminderToast = originalCreateReminderToast;
       
       // Clean up mocks
-      console.log.mockRestore();
+      .mockRestore();
     });
 
     test('should create toast for task reminders', () => {
@@ -292,7 +292,7 @@ describe('sharedUtils', () => {
       // For this test, we need to use our own mock implementation to control skipping
       // Create a test-specific mock that simulates the skipping behavior
       const testMock = jest.fn().mockImplementation((item, type, onClose) => {
-        console.log(`Skipping toast for ${type}: ${item.name}`);
+        (`Skipping toast for ${type}: ${item.name}`);
         // Don't call toast.info()
       });
       
@@ -315,7 +315,7 @@ describe('sharedUtils', () => {
       expect(toast.info).not.toHaveBeenCalled();
       
       // Verify the skip message was logged
-      expect(console.log).toHaveBeenCalledWith(
+      expect().toHaveBeenCalledWith(
         expect.stringContaining(`Skipping toast for ${mockPastReminder.type}: ${mockPastReminder.name}`)
       );
       
@@ -327,7 +327,7 @@ describe('sharedUtils', () => {
       // For this test, we need to use our own mock implementation to control skipping
       // Create a test-specific mock that simulates the skipping behavior
       const testMock = jest.fn().mockImplementation((item, type, onClose) => {
-        console.log(`Skipping toast for ${type}: ${item.name}`);
+        (`Skipping toast for ${type}: ${item.name}`);
         // Don't call toast.info()
       });
       
@@ -350,7 +350,7 @@ describe('sharedUtils', () => {
       expect(toast.info).not.toHaveBeenCalled();
       
       // Verify the skip message was logged
-      expect(console.log).toHaveBeenCalledWith(
+      expect().toHaveBeenCalledWith(
         expect.stringContaining(`Skipping toast for ${mockFutureReminder.type}: ${mockFutureReminder.name}`)
       );
       

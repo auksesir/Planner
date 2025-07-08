@@ -67,7 +67,7 @@ const PomodoroTimer = ({ workDuration, breakDuration, onTogglePomodoro, onSessio
 
           }
         } catch (err) {
-          console.error('Error loading timer state:', err);
+          ('Error loading timer state:', err);
           if (mountedRef.current) {
             setTimeLeft(workDuration * 60);
             setMode('work');
@@ -177,13 +177,13 @@ const PomodoroTimer = ({ workDuration, breakDuration, onTogglePomodoro, onSessio
       audio.volume = 0.7;
       
       audio.play().catch(err => {
-        console.error('Error playing sound:', err);
+        ('Error playing sound:', err);
         if ('Notification' in window && Notification.permission === 'granted') {
           new Notification(`${mode === 'work' ? 'Work session' : 'Break'} completed!`);
         }
       });
     } catch (error) {
-      console.error('Error playing notification sound:', error);
+      ('Error playing notification sound:', error);
     }
   };
 

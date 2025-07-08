@@ -20,7 +20,7 @@ const PomodoroInputBar = ({ onCancel, onStartPomodoro }) => {
           setBreakDuration(settings.break_duration || 5);
         }
       } catch (error) {
-        console.error('Error loading Pomodoro settings:', error);
+        ('Error loading Pomodoro settings:', error);
         toast.error('Failed to load Pomodoro settings. Using defaults.');
       } finally {
         setIsLoading(false);

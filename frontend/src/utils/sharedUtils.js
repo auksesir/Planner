@@ -19,18 +19,18 @@ export const formatDateTime = (dateValue) => {
     } else if (typeof dateValue === 'string') {
       date = dateValue.includes('T') ? new Date(dateValue) : parseISO(dateValue);
     } else {
-      console.error('Invalid date value type:', typeof dateValue);
+      ('Invalid date value type:', typeof dateValue);
       return null;
     }
 
     if (isNaN(date.getTime())) {
-      console.error('Invalid date created from:', dateValue);
+      ('Invalid date created from:', dateValue);
       return null;
     }
 
     return format(date, DATE_FORMAT);
   } catch (error) {
-    console.error('Date formatting error for value:', dateValue);
+    ('Date formatting error for value:', dateValue);
     return null;
   }
 };
@@ -56,7 +56,7 @@ export const shouldRefetchDayView = (
                             result.repeatReminderOnCurrentDay || 
                             false;
   
-  console.log('Checking refetch conditions:', {
+  ('Checking refetch conditions:', {
     repeatOnSelectedDay,
     repeatOnCurrentDay,
     itemDate,
@@ -109,20 +109,20 @@ export const createReminderToast = (item, type, onClose, playSound = true) => {
   
   if (type === 'task') {
     if (!item.reminderTime && !item.startTime) {
-      console.error('Task has no valid times:', item);
+      ('Task has no valid times:', item);
       return;
     }
     itemTime = parseDate(item.reminderTime) || parseDate(item.startTime);
   } else {
     if (!item.selectedTime) {
-      console.error('Reminder has no selectedTime:', item);
+      ('Reminder has no selectedTime:', item);
       return;
     }
     itemTime = parseDate(item.selectedTime);
   }
 
   if (!itemTime) {
-    console.error(`Failed to parse time for ${type}:`, item);
+    (`Failed to parse time for ${type}:`, item);
     return;
   }
 
@@ -135,7 +135,7 @@ export const createReminderToast = (item, type, onClose, playSound = true) => {
   
   // Skip past reminders and future reminders on page load
   if (itemTime < twoMinutesAgo || (itemTime > now && itemTime < tenSecondsInFuture)) {
-    console.log(`Skipping toast for ${type}: ${itemName} (${itemTime.toLocaleString()})`);
+    (`Skipping toast for ${type}: ${itemName} (${itemTime.toLocaleString()})`);
     return;
   }
 
@@ -149,12 +149,12 @@ export const createReminderToast = (item, type, onClose, playSound = true) => {
 
   // Don't show the same toast multiple times
   if (!toast.isActive(toastId)) {
-    console.log(`Creating toast notification for ${type}: ${itemName}`);
+    (`Creating toast notification for ${type}: ${itemName}`);
     
     // Optionally play sound
     if (playSound) {
       playNotificationSound(type, 0.7).catch(error => {
-        console.error('Error playing notification sound:', error);
+        ('Error playing notification sound:', error);
       });
     }
 
@@ -167,11 +167,11 @@ export const createReminderToast = (item, type, onClose, playSound = true) => {
       position: "top-right",
       className: "reminder-toast",
       onClose: () => {
-        console.log(`Toast closed for ${type} [${item.id}]`);
+        (`Toast closed for ${type} [${item.id}]`);
         
         // For task reminders, always clear the reminder when the toast is closed
         if (type === 'task' && onClose) {
-          console.log(`Executing clear callback for task reminder: ${item.id}`);
+          (`Executing clear callback for task reminder: ${item.id}`);
           onClose();
         } else if (onClose) {
           onClose();
@@ -187,7 +187,7 @@ export const scheduleReminder = (item, type, clearCallback) => {
     : parseDate(item.selectedTime);
 
   if (!reminderDateTime) {
-    console.error('Invalid reminder date:', { reminderDateTime });
+    ('Invalid reminder date:', { reminderDateTime });
     return null;
   }
 
@@ -207,7 +207,7 @@ export const scheduleReminder = (item, type, clearCallback) => {
           }, false); // Don't play sound again in createReminderToast
         })
         .catch(error => {
-          console.error('Error playing notification sound:', error);
+          ('Error playing notification sound:', error);
           createReminderToast(item, type, () => {
             if (type === 'task' && clearCallback) {
               clearCallback(item.id);
@@ -217,7 +217,7 @@ export const scheduleReminder = (item, type, clearCallback) => {
     }, timeUntilReminder);
   } else {
     // For past reminders, log but don't trigger notifications
-    console.log(`Skipping past reminder for ${item.name} (scheduled at ${reminderDateTime.toLocaleString()})`);
+    (`Skipping past reminder for ${item.name} (scheduled at ${reminderDateTime.toLocaleString()})`);
     return null;
   }
 };

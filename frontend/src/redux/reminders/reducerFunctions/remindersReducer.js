@@ -9,7 +9,7 @@ const parseDate = (dateString) => {
   try {
     return parse(dateString, DATE_FORMAT, new Date());
   } catch (error) {
-    console.error(`Error parsing date: ${dateString}`, error);
+    (`Error parsing date: ${dateString}`, error);
     return new Date();
   }
 };

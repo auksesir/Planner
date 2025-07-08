@@ -3,10 +3,10 @@
 import { format, isSameDay } from 'date-fns';
 import { toast } from 'react-toastify';
 import {
-  addReminder,
-  getLatestReminder,
-  getRemindersForDay,
-  updateReminder
+    addReminder,
+    getLatestReminder,
+    getRemindersForDay,
+    updateReminder
 } from '../api/api';
 import { formatDateTime } from './sharedUtils';
 import { formatHour } from './timeUtils';
@@ -50,10 +50,10 @@ export const handleAddOrUpdateReminder = async (
         return parsedDate;
       }
       
-      console.error(`Failed to parse ${fieldName}:`, dateStr);
+      (`Failed to parse ${fieldName}:`, dateStr);
       return null;
     } catch (error) {
-      console.error(`Parsing error for ${fieldName}:`, error);
+      (`Parsing error for ${fieldName}:`, error);
       return null;
     }
   };
@@ -67,13 +67,13 @@ export const handleAddOrUpdateReminder = async (
       const time = new Date(timeStr);
       
       if (isNaN(time)) {
-        console.error('Invalid time value:', timeStr);
+        ('Invalid time value:', timeStr);
         return null;
       }
 
       return format(time, 'dd/MM/yyyy, HH:mm:ss');
     } catch (error) {
-      console.error('Time conversion error:', {
+      ('Time conversion error:', {
         input: timeStr,
         error: error.message,
         stack: error.stack
@@ -92,7 +92,7 @@ export const handleAddOrUpdateReminder = async (
       const selectedDay = safeParseDate(reminder.selectedDay, 'reminder.selectedDay');
 
       if (!originalStartDay || !selectedDay) {
-        console.error('CRITICAL: Invalid dates', {
+        ('CRITICAL: Invalid dates', {
           originalStartDay,
           selectedDay,
           originalStartDayInput: reminderToEdit.originalStartDay,
@@ -121,7 +121,7 @@ export const handleAddOrUpdateReminder = async (
             selectedTime: selectedTimeStr || reminderToEdit.selectedTime
           });
         } catch (deletionError) {
-          console.error('Error during reminder deletion:', deletionError);
+          ('Error during reminder deletion:', deletionError);
         }
       }
 
@@ -135,7 +135,7 @@ export const handleAddOrUpdateReminder = async (
     }
 
   } catch (error) {
-    console.error('COMPLETE ERROR DETAILS:', {
+    ('COMPLETE ERROR DETAILS:', {
       message: error.message,
       stack: error.stack,
       name: error.name
@@ -174,7 +174,7 @@ const addReminderToCurrentDay = (reminder, addReminder) => {
     
     addReminder({ hour: hourFormatted, reminder: formattedReminder });
   } catch (error) {
-    console.error('Error in addReminderToCurrentDay:', error);
+    ('Error in addReminderToCurrentDay:', error);
   }
 };
 
@@ -194,7 +194,7 @@ export const submitReminder = async (newReminder, isEditing, reminderToEdit) => 
   }
 
   // Log the API response
-  console.log('API response:', result);
+  ('API response:', result);
 
   // Return the complete result with all flags
   return { 
@@ -294,7 +294,7 @@ export const scheduleReminder = (item) => {
     }, timeUntilReminder);
   } else {
     // For past reminders, don't trigger anything
-    console.log(`Skipping past reminder: ${item.name} (${reminderTime.toLocaleString()})`);
+    (`Skipping past reminder: ${item.name} (${reminderTime.toLocaleString()})`);
   }
 };
 
@@ -334,7 +334,7 @@ export const loadRemindersForDay = async (date, dispatch) => {
       }));
     });
   } catch (error) {
-    console.error('Error loading reminders:', {
+    ('Error loading reminders:', {
       date,
       error: error.message,
       stack: error.stack
