@@ -27,42 +27,52 @@ body {
   z-index: 1;
 }
 
-/* FIXED: Specific positioning for different timer types */
+/* Task timer sphere (CombinedSphere - when current task exists) */
 .timer-sphere {
   position: absolute;
+  top: 45%; /* Changed to match text position */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  box-shadow: 0 0 .5rem .3rem rgba(255, 255, 255, 0.076), inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
+  animation: bounce 7s ease-in-out infinite;
+  filter: blur(.03rem);
 }
 
+/* Pomodoro timer positioning */
 .pomodoro-container {
   position: absolute;
-  top: 45%; /* Slightly lower to account for controls taking up space below */
+  top: 45%; /* Changed to match text and other spheres */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
 }
 
-/* When on home page, adjust positioning */
+/* Task timer sphere when on home page */
 .timer-sphere.notcentered {
   position: absolute;
+  top: 45%; /* Changed to match text position */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
 }
 
+/* Pomodoro timer when on home page */
 .pomodoro-container.notcentered {
   position: absolute;
-  top: 34%; /* Adjusted for home page with controls */
+  top: 45%; /* Changed from 34% to match text */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
 }
 
-/* FIXED: Make the default sphere scroll with the page */
+/* Default sphere (no current task) */
 .sphere {
   position: absolute; /* Changed from fixed to absolute */
-  top: 50%;
+  top: 45%; /* Changed from 50% to match text */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -74,9 +84,10 @@ body {
   filter: blur(.03rem);
 }
 
+/* Default sphere when on home page */
 .sphere.notcentered {
   position: absolute; /* Changed from fixed to absolute */
-  top: 39%;
+  top: 45%; /* Changed from 39% to match text */
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -131,13 +142,11 @@ body {
   border-radius: 10px;
 }
 
-
 h2 {
   color: #403cc989;
   font-size: 1.1rem;
   transition: color 0.3s ease;
 }
-
 
 /* Button styles */
 button {
@@ -178,8 +187,6 @@ button {
   animation: slowAppear 0.4s ease-in-out forwards;
 }
 
-
-
 /* Animations */
 @keyframes slowAppear {
   from {
@@ -204,49 +211,39 @@ button {
   animation: slowDisappear 1s ease-in-out;
 }
 
-
+/* Bounce animation for spheres */
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-2px);
+  }
+}
 
 /* Media queries for responsive design */
 @media (max-width: 768px) {
   .text {
     font-size: 3rem;
     letter-spacing: 0.3vh;
+    top: 40%; /* Slightly higher on mobile */
   }
   
-  
- /* FIXED: Specific mobile positioning for different timer types */
-  .timer-sphere {
-    position: absolute;
-    top: 30%; /* Moved up to match pomodoro timer */
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .pomodoro-container {
-    position: absolute;
-    top: 30%; /* Lower to account for controls */
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .timer-sphere.notcentered {
-    position: absolute;
-    top: 30%; /* Moved up to match pomodoro timer */
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
+  /* All spheres positioned consistently on mobile */
+  .timer-sphere,
+  .timer-sphere.notcentered,
+  .pomodoro-container,
   .pomodoro-container.notcentered {
     position: absolute;
-    top: 30%; /* Adjusted for mobile home page */
+    top: 40%; /* Changed to match mobile text */
     left: 50%;
     transform: translate(-50%, -50%);
   }
   
-  /* FIXED: Also make default sphere scroll with page on mobile */
+  /* Default sphere on mobile */
   .sphere {
     position: absolute; /* Changed from fixed to absolute */
-    top: 35%;
+    top: 30%; /* Changed to match mobile text */
     left: 50%;
     transform: translate(-50%, -50%);
     width: 12rem;
@@ -255,7 +252,7 @@ button {
   
   .sphere.notcentered {
     position: absolute; /* Changed from fixed to absolute */
-    top: 35%;
+    top: 40%; /* Changed to match mobile text */
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -265,9 +262,21 @@ button {
 @media (max-width: 480px) {
   .text {
     font-size: 2.5rem;
+    top: 38%; /* Even higher on very small screens */
+  }
+  
+  /* All spheres follow text positioning on very small screens */
+  .sphere,
+  .sphere.notcentered,
+  .timer-sphere,
+  .timer-sphere.notcentered,
+  .pomodoro-container,
+  .pomodoro-container.notcentered {
+    top: 38%; /* Consistent with very small screen text */
   }
   
   .current-day-planner {
     padding: 0.5rem;
   }
 }
+

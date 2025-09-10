@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Link, Route, HashRouter as Router, Routes } from 'react-router-dom';
 import { clearReminder, getRemindersForDay, getTasksForDay } from './api/api';
+import { pomodoroApi } from './api/pomodoroApi';
 import InputBar from './components/input_components/InputBar';
 import PomodoroTimer from './components/planning_utilities/PomodoroTimer';
 import ReminderScheduler from './components/planning_utilities/ReminderScheduler';
@@ -115,6 +116,19 @@ const App = () => {
     const currentDate = new Date().toISOString().split('T')[0];
     loadTasksAndReminders(currentDate);
   };
+
+  useEffect(() => {
+  // Suppress Bugsnag in development mode
+  if (process.env.NODE_ENV === 'development') {
+    const originalOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url, ...args) {
+      if (typeof url === 'string' && url.includes('bugsnag.com')) {
+        return; // Block Bugsnag requests
+      }
+      return originalOpen.call(this, method, url, ...args);
+    };
+    }
+  }, []);
 
   const formatHour = (hour) => {
     const formattedHour = hour % 12 || 12;
@@ -308,6 +322,35 @@ const App = () => {
     };
   }, [tasks, upcomingTaskTimer, currentTask, updateCounterRef.current]);
 
+  const handlePomodoroSessionComplete = async (isWorkSession, duration) => {
+  try {
+    // Calculate session data
+    const endTime = new Date();
+    const startTime = new Date(endTime.getTime() - (duration * 60 * 1000));
+    
+    const sessionData = {
+      start_time: startTime,
+      end_time: endTime,
+      duration: duration * 60, // Convert to seconds for API
+      is_work: isWorkSession,
+      is_completed: true,
+      task_id: currentTask?.id || null
+    };
+
+    // Record the session in the database
+    const result = await pomodoroApi.recordSession(sessionData);
+    
+    if (result.error) {
+      console.error('Failed to record Pomodoro session:', result.error);
+    } else {
+      console.log('Pomodoro session recorded successfully:', result);
+    }
+    } catch (error) {
+      console.error('Error handling Pomodoro session completion:', error);
+    }
+  };
+
+
   /**
    * Parses the custom date format used throughout the application.
    * Format: "DD/MM/YYYY, HH:mm:ss"
@@ -480,22 +523,9 @@ const App = () => {
     }
   };
 
-  /**
-   * Sets up background notification support and handles app visibility changes.
-   * Ensures reminders work even when the app is not in focus.
-   */
-  useEffect(() => {
-    // Register service worker for background notifications
-    if ('serviceWorker' in navigator && 'PushManager' in window) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('Service Worker registered');
-        })
-        .catch(error => {
-          console.error('Service Worker registration failed:', error);
-        });
-    }
+  
     
+  useEffect(() => {
     // Handle app visibility changes to check for missed reminders
     const handleVisibilityChange = () => {
       if (!document.hidden) {

@@ -175,7 +175,7 @@ const CombinedSphere = ({ currentTask }) => {
       animation: bounce 7s ease-in-out infinite;
       filter: blur(.03rem);
       position: fixed;
-      top: 50%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
       transition: all 0.5s ease-in-out;
@@ -183,7 +183,7 @@ const CombinedSphere = ({ currentTask }) => {
     }
 
     .timer-sphere.notcentered {
-      top: 39%;
+      top: -65%;
     }
   `;
 

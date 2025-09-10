@@ -152,8 +152,12 @@ const InputBar = ({
       {!taskToEdit && !reminderToEdit && inputType === null && (
         <div className='input-container'>
           <div className='input-wrapper'>
-            <button onClick={() => handleInputChange('task')}>Task</button>
-            
+            <button 
+              onClick={() => handleInputChange('task')}
+              className="input-button"
+            >
+              Task
+            </button>            
             {/* Pomodoro/Timer toggle button */}
             {currentTask ? (
               // When there's a current task
@@ -161,15 +165,14 @@ const InputBar = ({
                 // If pomodoro is active, show toggle button
                 <button 
                   onClick={handleToggleTimerDisplay} 
-                  className={`pomodoro-button ${!showTaskTimer ? 'active' : ''}`}
-                >
+                  className={`input-button ${!showTaskTimer ? 'active' : ''}`}                >
                   ⏱️ {showTaskTimer ? 'Switch to Pomodoro' : 'Switch to Task Timer'}
                 </button>
               ) : (
                 // If pomodoro is not active, show start button
                 <button 
                   onClick={() => handleInputChange('pomodoro')} 
-                  className="pomodoro-button"
+                  className="input-button"
                 >
                   ⏱️ Start Pomodoro
                 </button>
@@ -179,21 +182,26 @@ const InputBar = ({
               isPomodoroActive ? (
                 <button 
                   onClick={handleStopPomodoro} 
-                  className="pomodoro-button active"
+                  className="input-button active"
                 >
                   ⏱️ Stop Pomodoro
                 </button>
               ) : (
                 <button 
                   onClick={() => handleInputChange('pomodoro')} 
-                  className="pomodoro-button"
+                  className="input-button"
                 >
                   ⏱️ Start Pomodoro
                 </button>
               )
             )}
             
-            <button onClick={() => handleInputChange('reminder')}>Reminder</button>
+            <button 
+              onClick={() => handleInputChange('reminder')}
+              className="input-button"
+            >
+              Reminder
+            </button>
           </div>
         </div>
       )}

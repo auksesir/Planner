@@ -51,34 +51,6 @@
   min-width: 70px; /* Reduced minimum width */
 }
 
-/* Pomodoro button styles */
-.pomodoro-button {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: none;
-  background-color: #fff;
-  color: #160e36;
-  cursor: pointer;
-  white-space: nowrap;
-  min-width: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.pomodoro-button.active {
-  background-color: #6b63ff;
-  color: white;
-}
-
-.pomodoro-button:hover {
-  background-color: #f0f0f0;
-}
-
-.pomodoro-button.active:hover {
-  background-color: #5a52ee;
-}
 
 /* MUI override styles */
 .MuiTextField-root {
