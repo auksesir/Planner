@@ -6,6 +6,9 @@ import { toast } from 'react-toastify';
 import configureStore from 'redux-mock-store';
 import * as api from '../../../api/api';
 
+// Import the component after mocking
+import DailyPlanner from '../../../components/planning_visualisation/DailyPlanner';
+
 // Create a completely separate mock module - don't use variables
 jest.mock('../../../components/planning_visualisation/DailyPlanner', () => function MockDailyPlanner(props) {
   return (
@@ -47,9 +50,6 @@ jest.mock('../../../api/api', () => ({
   }),
   clearReminder: jest.fn().mockResolvedValue({ success: true })
 }));
-
-// Import the component after mocking
-import DailyPlanner from '../../../components/planning_visualisation/DailyPlanner';
 
 // Create mock store
 const mockStore = configureStore(); 

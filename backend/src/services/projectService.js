@@ -39,20 +39,13 @@ class ProjectService {
             // Check if description column exists, if not, skip it
             // First, let's try with just the basic required columns that should exist
             const result = await this.db.run(
-                'INSERT INTO projects (name, start_date, end_date, deadline) VALUES (?, ?, ?, ?)',
-                [name, startDate, endDate, deadline || endDate]
+              'INSERT INTO projects (name, description, start_date, end_date, deadline) VALUES (?, ?, ?, ?, ?)',                
+              [name, description, startDate, endDate, deadline || endDate]
             );
             
             console.log('Project created with ID:', result.lastID);
             
-            return {
-                id: result.lastID,
-                name,
-                start_date: startDate,
-                end_date: endDate,
-                deadline: deadline || endDate,
-                created_at: new Date().toISOString()
-            };
+            return await this.db.get('SELECT * FROM projects WHERE id = ?', [result.lastID]);
         } catch (error) {
             console.error('Error creating project:', error);
             console.error('SQL Error details:', error.message);

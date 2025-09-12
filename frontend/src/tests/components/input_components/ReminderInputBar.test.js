@@ -32,7 +32,7 @@ jest.mock('react-toastify', () => ({
 }));
 
 // Mock reminder utilities
-jest.mock('../../utils/reminderUtils', () => ({
+jest.mock('../../../utils/reminderUtils', () => ({
   submitReminder: jest.fn(),
   clearForm: jest.fn(),
   clearInputField: jest.fn()
@@ -40,7 +40,7 @@ jest.mock('../../utils/reminderUtils', () => ({
 
 // Mock MUI components with unique test IDs
 jest.mock('@mui/material', () => ({
-  TextField: ({ placeholder, ...props }) => (
+  TextField: ({ placeholder, value, onChange, ...props }) => (
     <input
       type="text"
       data-testid={
@@ -51,6 +51,9 @@ jest.mock('@mui/material', () => ({
           : 'text-field'
       }
       placeholder={placeholder}
+      value={value || ''}
+      onChange={onChange || (() => {})}
+      readOnly={!onChange}
       {...props}
     />
   ),

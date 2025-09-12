@@ -1,9 +1,10 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import * as projectsApi from '../../api/projectsApi';
 import Projects from '../../pages/Projects';
 
 // Mock the API module with all the functions used by Projects component
 jest.mock('../../api/projectsApi', () => ({
-  getProjects: jest.fn(),
+  getAllProjects: jest.fn(),
   getProjectWithNodes: jest.fn(),
   createProject: jest.fn(),
   deleteProject: jest.fn(),
@@ -87,8 +88,6 @@ jest.mock('../../components/mind_mapping_visualisation/ProjectMindMap', () => {
   };
 });
 
-// Import the mocked API after mocking
-const projectsApi = require('../../api/projectsApi');
 
 describe('Projects Component', () => {
   beforeEach(() => {
@@ -96,7 +95,7 @@ describe('Projects Component', () => {
     jest.clearAllMocks();
     
     // Set up default mock implementations
-    projectsApi.getProjects.mockResolvedValue([
+    projectsApi.getAllProjects.mockResolvedValue([
       { 
         id: 1, 
         name: 'Project 1', 
@@ -132,7 +131,7 @@ describe('Projects Component', () => {
     
     // Wait for the API call to complete and projects to render
     await waitFor(() => {
-      expect(projectsApi.getProjects).toHaveBeenCalled();
+      expect(projectsApi.getAllProjects).toHaveBeenCalled();
     });
 
     await waitFor(() => {

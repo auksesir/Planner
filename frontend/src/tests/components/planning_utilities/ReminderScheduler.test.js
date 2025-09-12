@@ -3,6 +3,10 @@ import '@testing-library/jest-dom'; // Corrected jest-dom import
 import { act, render } from '@testing-library/react';
 import * as sharedUtils from '../../../utils/sharedUtils';
 
+// Import the component after setting up mocks
+import ReminderScheduler from '../../../components/planning_utilities/ReminderScheduler';
+import { parseDate } from '../../../utils/timeUtils';
+
 // Suppress console logs/errors for cleaner test output
 jest.spyOn(console, 'log').mockImplementation(() => {});
 jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -39,7 +43,7 @@ Object.defineProperty(window, 'localStorage', {
 });
 
 // Mock createReminderToast
-jest.mock('../../utils/sharedUtils', () => ({
+jest.mock('../../../utils/sharedUtils', () => ({
   createReminderToast: jest.fn((item, type, callback) => {
     // Store the callback for tests to access
     return callback;
@@ -47,7 +51,7 @@ jest.mock('../../utils/sharedUtils', () => ({
 }));
 
 // Mock timeUtils parseDate to simplify date handling
-jest.mock('../../utils/timeUtils', () => ({
+jest.mock('../../../utils/timeUtils', () => ({
   parseDate: jest.fn(dateStr => {
     if (!dateStr) return null;
     try {
@@ -57,10 +61,6 @@ jest.mock('../../utils/timeUtils', () => ({
     }
   }),
 }));
-
-// Import the component after setting up mocks
-import ReminderScheduler from '../../../components/planning_utilities/ReminderScheduler';
-import { parseDate } from '../../../utils/timeUtils';
 
 describe('ReminderScheduler Component', () => {
   // Mock function for clearing reminders

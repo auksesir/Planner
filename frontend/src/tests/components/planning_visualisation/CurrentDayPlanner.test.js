@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
+// Import the component AFTER all mocks are set up
+import CurrentDayPlanner from '../../../components/planning_visualisation/CurrentDayPlanner';
+
 // Mock dependencies first, before any component imports
 const mockDispatch = jest.fn();
 const mockSetSelectedDayUI = jest.fn();
@@ -28,9 +31,6 @@ jest.mock('../../../components/planning_visualisation/DailyPlanner', () => (prop
     {props.setReminderToEdit && <div data-testid="has-set-reminder-edit">true</div>}
   </div>
 ));
-
-// Import the component AFTER all mocks are set up
-import CurrentDayPlanner from '../../../components/planning_visualisation/CurrentDayPlanner';
 
 describe('CurrentDayPlanner Component', () => {
   beforeEach(() => {

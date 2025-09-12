@@ -33,23 +33,26 @@ jest.mock('react-toastify', () => ({
 }));
 
 // Mock task utilities
-jest.mock('../../utils/taskUtils', () => ({
+jest.mock('../../../utils/taskUtils', () => ({
   submitTask: jest.fn(),
   clearForm: jest.fn(),
   clearInputField: jest.fn()
 }));
 
 // Mock project API
-jest.mock('../../api/projectsApi', () => ({
+jest.mock('../../../api/projectsApi', () => ({
   linkTaskToNodeAsSubnode: jest.fn()
 }));
 
 // Mock MUI components with proper test IDs based on the actual component structure
 jest.mock('@mui/material', () => ({
-  TextField: ({ placeholder, ...props }) => (
+  TextField: ({ placeholder, value, onChange, ...props }) => (
     <input
       type="text"
       placeholder={placeholder}
+      value={value || ''}
+      onChange={onChange || (() => {})}
+      readOnly={!onChange}
       {...props}
     />
   ),

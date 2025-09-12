@@ -210,6 +210,13 @@ const checkTimeOverlap = (start1, end1, start2, end2) => {
  * @returns {boolean} - Whether there's an overlap
  */
 const checkTaskOverlaps = (newTask, existingTasks) => {
+
+  // Handle invalid input cases
+  if (!newTask || !Array.isArray(existingTasks)) {
+    console.log('Invalid input - newTask or existingTasks not valid');
+    return false;
+  }
+
   console.log('=== CHECKING TASK OVERLAPS ===');
   console.log('New task:', {
     id: newTask.id,
@@ -220,12 +227,6 @@ const checkTaskOverlaps = (newTask, existingTasks) => {
     repeatOption: newTask.repeatOption
   });
   console.log('Existing tasks count:', Array.isArray(existingTasks) ? existingTasks.length : 0);
-
-  // Handle invalid input cases
-  if (!newTask || !Array.isArray(existingTasks)) {
-    console.log('Invalid input - newTask or existingTasks not valid');
-    return false;
-  }
   
   // Basic validation
   if (!newTask.startTime || !newTask.endTime) {

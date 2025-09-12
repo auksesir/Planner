@@ -2,11 +2,17 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+*.report.html
+/playwright-report/
+/test-results/
+test-results.json
+test-results.xml
 
 # production
 /build
@@ -18,6 +24,32 @@
 .env.test.local
 .env.production.local
 
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+
+# Cache
+.eslintcache
+
+# Playwright browsers
+/test-results/
+/playwright/.cache/

@@ -27,12 +27,12 @@ jest.mock('react-redux', () => ({
   })
 }));
 
-jest.mock('../../redux/reminders/actions/remindersActions', () => ({
+jest.mock('../../../redux/reminders/actions/remindersActions', () => ({
   addReminder: jest.fn(),
   deleteReminder: jest.fn()
 }));
 
-jest.mock('../../redux/tasks/actions/tasksActions', () => ({
+jest.mock('../../../redux/tasks/actions/tasksActions', () => ({
   addTask: jest.fn(),
   deleteTask: jest.fn()
 }));
@@ -48,7 +48,7 @@ jest.mock('react-toastify', () => ({
 }));
 
 // Mock Task and Reminder input components
-jest.mock('../../components/input_components/TaskInputBar', () => {
+jest.mock('../../../components/input_components/TaskInputBar', () => {
   return function MockTaskInputBar({ onCancel, onAddOrUpdateTask, taskToEdit, defaultValues }) {
     return (
       <div data-testid="task-input-bar">
@@ -66,7 +66,7 @@ jest.mock('../../components/input_components/TaskInputBar', () => {
   };
 });
 
-jest.mock('../../components/input_components/ReminderInputBar', () => {
+jest.mock('../../../components/input_components/ReminderInputBar', () => {
   return function MockReminderInputBar({ onCancel, onAddOrUpdateReminder, reminderToEdit, defaultValues }) {
     return (
       <div data-testid="reminder-input-bar">
@@ -126,11 +126,11 @@ jest.mock('@mui/x-date-pickers', () => ({
 }));
 
 // Mock utility functions
-jest.mock('../../utils/reminderUtils', () => ({
+jest.mock('../../../utils/reminderUtils', () => ({
   handleAddOrUpdateReminder: jest.fn()
 }));
 
-jest.mock('../../utils/taskUtils', () => ({
+jest.mock('../../../utils/taskUtils', () => ({
   handleAddOrUpdateTask: jest.fn()
 }));
 

@@ -3,6 +3,7 @@ const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: './src/tests/selenium', // Correct path
+  testMatch: '**/*.playwright', // Add this line
   timeout: 60000,
   expect: {
     timeout: 10000

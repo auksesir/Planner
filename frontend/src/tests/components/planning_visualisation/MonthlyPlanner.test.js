@@ -4,6 +4,9 @@ import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import * as api from '../../../api/api';
 import * as reduxActions from '../../../redux/tasks/actions/selectedDayUIActions';
 
+// Now import the component
+import MonthlyPlanner from '../../../components/planning_visualisation/MonthlyPlanner';
+
 // Mock console to suppress warnings
 jest.spyOn(console, 'error').mockImplementation(() => {});
 
@@ -50,9 +53,6 @@ jest.mock('../../../components/planning_visualisation/DailyPlanner', () => ({
     );
   }
 }));
-
-// Now import the component
-import MonthlyPlanner from '../../../components/planning_visualisation/MonthlyPlanner';
 
 describe('MonthlyPlanner Component', () => {
   const mockSetTaskToEdit = jest.fn();

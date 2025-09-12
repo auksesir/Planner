@@ -1,7 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
+// Import the actual component
+import ProjectMindMap from '../../../components/mind_mapping_visualisation/ProjectMindMap';
+
 // Mock child components to simplify testing
-jest.mock('../../components/mind_mapping_utilities/ConfirmDeleteDialog', () => {
+jest.mock('../../../components/mind_mapping_utilities/ConfirmDeleteDialog', () => {
   return function MockConfirmDeleteDialog(props) {
     return props.open ? (
       <div data-testid="confirm-delete-dialog">
@@ -11,7 +14,7 @@ jest.mock('../../components/mind_mapping_utilities/ConfirmDeleteDialog', () => {
   };
 });
 
-jest.mock('../../components/mind_mapping_utilities/SubnodeDialog', () => {
+jest.mock('../../../components/mind_mapping_utilities/SubnodeDialog', () => {
   return function MockSubnodeDialog(props) {
     return props.open ? (
       <div data-testid="subnode-dialog">
@@ -21,13 +24,13 @@ jest.mock('../../components/mind_mapping_utilities/SubnodeDialog', () => {
   };
 });
 
-jest.mock('../../components/mind_mapping_visualisation/NodeConnections', () => {
+jest.mock('../../../components/mind_mapping_visualisation/NodeConnections', () => {
   return function MockNodeConnections() {
     return <div data-testid="node-connections" />;
   };
 });
 
-jest.mock('../../components/mind_mapping_visualisation/ProjectNode', () => {
+jest.mock('../../../components/mind_mapping_visualisation/ProjectNode', () => {
   return function MockProjectNode(props) {
     return (
       <div 
@@ -42,9 +45,6 @@ jest.mock('../../components/mind_mapping_visualisation/ProjectNode', () => {
     );
   };
 });
-
-// Import the actual component
-import ProjectMindMap from '../../../components/mind_mapping_visualisation/ProjectMindMap';
 
 describe('ProjectMindMap Component', () => {
   const mockProject = {
