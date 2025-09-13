@@ -478,10 +478,10 @@ test.describe('Recurring Task Deletion Tests (TC1.6)', () => {
     await page.fill('input[placeholder*="Enter task name"]', 'rrr');
     await page.waitForTimeout(300);
 
-    ('Step 3: Choose date (May 29)');
+    ('Step 3: Choose start day ( 18)');
     await page.click('button[aria-label="Choose date"]');
     await page.waitForTimeout(800);
-    await page.click('button:has-text("29")');
+    await page.click('button:has-text("18")');
     await page.waitForTimeout(1000);
 
     ('Step 4: Set start time to 2:00 PM');
@@ -508,11 +508,11 @@ test.describe('Recurring Task Deletion Tests (TC1.6)', () => {
     await page.click('li:has-text("Daily")');
     await page.waitForTimeout(500);
 
-    ('Step 8: Set recurrence end date to May 31');
+    ('Step 8: Set recurrence end day to 20');
     // This is the SECOND date picker (for recurrence end date)
     await page.click('button[aria-label="Choose date"]');
     await page.waitForTimeout(800);
-    await page.click('button:has-text("31")');
+    await page.click('button:has-text("20")');
     await page.waitForTimeout(1000);
 
     ('Step 9: Add recurring task');
