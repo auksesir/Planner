@@ -25,8 +25,10 @@ jobs:
     - name: Run tests with coverage
       run: npm run test:all
     
-    - name: Comment PR with coverage
-      uses: romeovs/lcov-reporter-action@v0.3.1
+    - name: Jest Coverage Comment
+      uses: ArtiomTr/jest-coverage-report-action@v2
+      if: github.event_name == 'pull_request'
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        lcov-file: ./frontend/coverage/lcov.info
+        coverage-file: ./frontend/coverage/lcov.info
+        base-coverage-file: ./frontend/coverage/lcov.info

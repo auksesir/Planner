@@ -18,7 +18,7 @@
     "test": "cd frontend && npm test",
     "test:coverage": "cd frontend && npm run test:coverage",
     "test:ci": "cd frontend && npm run test:ci",
-    "test:e2e": "cd frontend && npm run test:e2e",
+    "test:e2e": "cd frontend && npm run test:e2e",    
     "test:e2e:headed": "cd frontend && npm run test:e2e:headed",
     "test:e2e:ui": "cd frontend && npm run test:e2e:ui",
     "lint": "cd frontend && npm run lint",
