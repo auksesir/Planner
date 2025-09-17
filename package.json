@@ -26,7 +26,6 @@
     "test:ci:all": "npm run install:all && npm run test:all",
 
     "install:all": "npm ci && cd frontend && npm ci && cd ../backend && npm ci",
-    "postinstall": "npm run install:all",
 
     "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
     "lint:check": "cd frontend && npm run lint:check && cd ../backend && npm run lint:check",
