@@ -49,24 +49,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --watchAll=false --ci",
     "test:ci": "react-scripts test --coverage --watchAll=false --ci --passWithNoTests",
-    "test:run": "react-scripts test --watchAll=false --ci --passWithNoTests",
-    "eject": "react-scripts eject",
-    "cypress:open": "npx cypress open",
-    "cypress:run": "npx cypress run", 
-     "test:e2e": "npx playwright test src/tests/e2e/",
-    "test:e2e:ui": "npx playwright test --ui",
-    "test:e2e:headed": "npx playwright test --headed", 
-    "test:e2e:debug": "npx playwright test --debug",
-    "test:performance": "npx jest tests/performance/",
-    "test:load": "node scripts/load-test-calendar.js",
-    "test:load-with-data": "node scripts/load-test-calendar.js --create-data",
-    "benchmark": "node scripts/load-test-calendar.js --benchmark-only",
-    "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:check": "npx eslint src --ext .js,.jsx,.ts,.tsx",
-    "format": "npx prettier --write src/**/*.{js,jsx,ts,tsx,css,md}",
-    "format:check": "npx prettier --check src/**/*.{js,jsx,ts,tsx,css,md}"
+    "test:coverage": "react-scripts test --coverage --watchAll=false --ci",
+    
+    "test:e2e": "playwright test src/tests/e2e/",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:check": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md}",
+    "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,css,md}"
   },
   "browserslist": {
     "production": [
