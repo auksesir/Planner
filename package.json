@@ -4,9 +4,9 @@
   "scripts": {
     "start": "cd frontend && npm start",
     "build": "cd frontend && npm run build",
-    "frontend:install": "cd frontend && npm ci",
-    "backend:install": "cd backend && npm ci",
-    "install:all": "npm ci && npm run frontend:install && npm run backend:install",
+    "frontend:install": "cd frontend && npm install",
+    "backend:install": "cd backend && npm install",
+    "install:all": "npm install && npm run frontend:install && npm run backend:install",
     "frontend:test": "cd frontend && npm run test",
     "frontend:test:ci": "cd frontend && npm run test:ci",
     "backend:test": "cd backend && npm run test",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.43.0",
     "@typescript-eslint/parser": "^8.43.0",
-    "eslint": "^9.35.0",
+    "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
     "lodash": "^4.17.21",
     "prettier": "^3.6.2",
