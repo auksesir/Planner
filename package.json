@@ -12,62 +12,30 @@
     "prettier": "^3.6.2",
     "terser": "^5.40.0"
   },
-   "scripts": {
-      "start": "cd frontend && npm start",
-      "build": "cd frontend && npm run build",
-      
-      "frontend:test": "cd frontend && npm run test",
-      "frontend:test:ci": "cd frontend && npm run test:ci",
-      
-      "backend:test": "cd backend && npm run test",
-      "backend:test:ci": "cd backend && npm run test:ci",
-      
-      "test:all": "npm run backend:test:ci && npm run frontend:test:ci",
-      
-      "install:all": "npm ci && cd frontend && npm ci && cd ../backend && npm ci",
-      
-      "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
-      "lint:check": "cd frontend && npm run lint:check && cd ../backend && npm run lint:check",
-      
-      "format": "cd frontend && npm run format && cd ../backend && npm run format",
-      "format:check": "cd frontend && npm run format:check && cd ../backend && npm run format:check",
-      
-      "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
-      "frontend:dev": "cd frontend && npm start",
-      "backend:dev": "cd backend && npm run dev",
-      
-      "ci": "npm run install:all && npm run test:all"
-    },
-  "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}",
-      "!<rootDir>/src/tests/selenium/**/*"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1",
-      "^src/(.*)$": "<rootDir>/src/$1",
-      "^utils/(.*)$": "<rootDir>/src/utils/$1",
-      "^api/(.*)$": "<rootDir>/src/api/$1",
-      "^components/(.*)$": "<rootDir>/src/components/$1",
-      "^redux/(.*)$": "<rootDir>/src/redux/$1"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/index.js",
-      "!src/reportWebVitals.js",
-      "!src/**/*.test.{js,jsx,ts,tsx}",
-      "!src/setupTests.js",
-      "!src/tests/selenium/**"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 30,
-        "functions": 30,
-        "lines": 30,
-        "statements": 30
-      }
-    }
+  "scripts": {
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+
+    "frontend:test": "cd frontend && npm run test",
+    "frontend:test:ci": "cd frontend && npm run test:ci",
+
+    "backend:test": "cd backend && npm run test",
+    "backend:test:ci": "cd backend && npm run test:ci",
+
+    "test:all": "npm run backend:test:ci && npm run frontend:test:ci",
+    "test:ci:all": "npm run install:all && npm run test:all",
+
+    "install:all": "npm ci && cd frontend && npm ci && cd ../backend && npm ci",
+    "postinstall": "npm run install:all",
+
+    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
+    "lint:check": "cd frontend && npm run lint:check && cd ../backend && npm run lint:check",
+
+    "format": "cd frontend && npm run format && cd ../backend && npm run format",
+    "format:check": "cd frontend && npm run format:check && cd ../backend && npm run format:check",
+
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
+    "frontend:dev": "cd frontend && npm start",
+    "backend:dev": "cd backend && npm run dev"
   }
 }
