@@ -68,5 +68,29 @@
     "lint:check": "eslint src --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md}",
     "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,css,md}"
+  },
+  "jest": {
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}",
+    "!<rootDir>/src/tests/selenium/**/*"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/index.js",
+    "!src/reportWebVitals.js",
+    "!src/**/*.test.{js,jsx,ts,tsx}",
+    "!src/setupTests.js",
+    "!src/tests/selenium/**"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 20,
+      "functions": 20,
+      "lines": 20,
+      "statements": 20
+      }
+    }
   }
 }
