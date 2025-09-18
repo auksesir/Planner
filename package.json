@@ -6,6 +6,7 @@
     "build": "cd frontend && npm run build",
     "frontend:install": "cd frontend && npm install",
     "backend:install": "cd backend && npm install",
+    "preinstall": "npx npm-force-resolutions",
     "install:all": "npm install && npm run frontend:install && npm run backend:install",
     "frontend:test": "cd frontend && npm run test",
     "frontend:test:ci": "cd frontend && npm run test:ci",
@@ -33,7 +34,11 @@
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
     "lodash": "^4.17.21",
+    "npm-force-resolutions": "^0.0.10",
     "prettier": "^3.6.2",
     "terser": "^5.40.0"
+  },
+  "resolutions": {
+    "debug": "4.4.3"
   }
 }
