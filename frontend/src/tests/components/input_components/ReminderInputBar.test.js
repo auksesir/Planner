@@ -80,7 +80,7 @@ jest.mock('@mui/x-date-pickers', () => ({
       <label>{label}</label>
       <input
         type="date"
-        value={value?.toISOString().split('T')[0]}
+        value={value ? value.toISOString().split('T')[0] : ''}
         onChange={(e) => onChange(new Date(e.target.value))}
         data-testid="date-picker"
       />
@@ -91,7 +91,7 @@ jest.mock('@mui/x-date-pickers', () => ({
       <label>{label}</label>
       <input
         type="time"
-        value={value?.toISOString().split('T')[1]?.slice(0,5)}
+        value={value ? value.toISOString().split('T')[1]?.slice(0,5) : ''}
         onChange={(e) => {
           const [hours, minutes] = e.target.value.split(':');
           const newDate = new Date(value || new Date());
