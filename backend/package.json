@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
-    "debug": "^4.4.3",
+    "debug": "4.4.3",
     "eslint": "^9.35.0",
     "jest": "^29.7.0",
     "jest-environment-node": "^29.7.0",
@@ -40,6 +40,6 @@
     "supertest": "^7.1.4"
   },
   "resolutions": {
-    "debug": "^4.3.4"
+    "debug": "4.4.3"
   }
 }
