@@ -404,7 +404,7 @@ describe('TaskInputBar Component', () => {
     if (endTimeValue.includes(':')) {
       const [hours, minutes] = endTimeValue.split(':').map(Number);
       const totalMinutes = hours * 60 + minutes;
-      expect(totalMinutes).toBe(10 * 60 + 30); // 10:30 in minutes (90 minutes after 10:00)
+      expect(totalMinutes).toBe(11 * 60 + 30); // 11:30 in minutes (90 minutes after 10:00)
     } else {
       throw new Error(`Unexpected time format: ${endTimeValue}`);
     }
