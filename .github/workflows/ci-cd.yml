@@ -22,18 +22,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-   
+        cache: 'npm'
+    
     - name: Install all dependencies
       run: npm run install:all
-      env:
-        CI: true
-
-    - name: Make Jest executable
-      run: chmod +x backend/node_modules/.bin/jest
-
-    - name: Verify Jest
-      run: cd backend && npx jest --version
-
+    
     - name: Run backend tests
       run: cd backend && npm run test:ci
     

@@ -4,26 +4,30 @@
   "scripts": {
     "start": "cd frontend && npm start",
     "build": "cd frontend && npm run build",
-    "frontend:install": "cd frontend && npm install",
-    "backend:install": "cd backend && npm install",
-    "preinstall": "npx npm-force-resolutions",
-    "install:all": "npm install && npm run frontend:install && npm run backend:install",
+    
     "frontend:test": "cd frontend && npm run test",
     "frontend:test:ci": "cd frontend && npm run test:ci",
+    
     "backend:test": "cd backend && npm run test",
     "backend:test:ci": "cd backend && npm run test:ci",
+    
     "test:all": "npm run backend:test:ci && npm run frontend:test:ci",
-    "test:ci:all": "npm run install:all && npm run test:all",
+    
+    "install:all": "npm ci && cd frontend && npm ci && cd ../backend && npm ci",
+    
     "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
     "lint:check": "cd frontend && npm run lint:check && cd ../backend && npm run lint:check",
+    
     "format": "cd frontend && npm run format && cd ../backend && npm run format",
     "format:check": "cd frontend && npm run format:check && cd ../backend && npm run format:check",
+    
     "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
     "frontend:dev": "cd frontend && npm start",
-    "backend:dev": "cd backend && npm run dev"
+    "backend:dev": "cd backend && npm run dev",
+    
+    "ci": "npm run install:all && npm run test:all"
   },
   "dependencies": {
-    "debug": "4.4.3",
     "electron": "^36.0.0",
     "express": "^5.1.0",
     "web-vitals": "^5.0.2"
@@ -34,11 +38,7 @@
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
     "lodash": "^4.17.21",
-    "npm-force-resolutions": "^0.0.10",
     "prettier": "^3.6.2",
     "terser": "^5.40.0"
-  },
-  "resolutions": {
-    "debug": "4.4.3"
   }
 }
