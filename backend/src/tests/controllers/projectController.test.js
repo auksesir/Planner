@@ -2,7 +2,7 @@
 const projectController = require('../../controllers/projectController');
 
 // Mock dependencies
-jest.mock('../services/serviceFactory');
+jest.mock('../../services/serviceFactory');
 const ServiceFactory = require('../../services/serviceFactory');
 
 describe('projectController', () => {

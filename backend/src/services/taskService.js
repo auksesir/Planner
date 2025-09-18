@@ -29,7 +29,13 @@ class TaskReminderService {
         task: await this.db.get('SELECT * FROM tasks WHERE id = ?', [taskId])
       };
     } catch (error) {
-      console.error('Error setting task reminder:', error);
+      const expectedErrors = [
+        'Task not found'
+      ];
+
+      if (!(process.env.NODE_ENV === 'test' && expectedErrors.includes(error.message))) {
+        console.error('Error adding/updating/deleting task:', error);
+      }
       throw error;
     }
   }
@@ -253,7 +259,13 @@ class TaskService {
         repeatTaskOnSelectedDay
       };
     } catch (error) {
-      console.error('Error adding task:', error);
+      const expectedErrors = [
+        'This task overlaps with another task.'
+      ];
+
+      if (!(process.env.NODE_ENV === 'test' && expectedErrors.includes(error.message))) {
+        console.error('Error adding/updating/deleting task:', error);
+      }
       throw error;
     }
   }
@@ -405,7 +417,13 @@ class TaskService {
         };
       }
     } catch (error) {
-      console.error('Error deleting task:', error);
+      const expectedErrors = [
+        'This instance is already deleted'
+      ];
+
+      if (!(process.env.NODE_ENV === 'test' && expectedErrors.includes(error.message))) {
+        console.error('Error adding/updating/deleting task:', error);
+      }
       throw error;
     }
   }

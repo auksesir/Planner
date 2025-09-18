@@ -3,6 +3,20 @@ const { open } = require('sqlite');
 const TaskService = require('../../services/taskService');
 const dateUtils = require('../../utils/dateUtils');
 
+beforeAll(() => {
+  const originalConsoleError = console.error;
+  console.error = (msg, err) => {
+    // Suppress "already deleted" errors in tests
+    if (err?.message === 'This instance is already deleted') return;
+    originalConsoleError(msg, err);
+  };
+});
+
+afterAll(() => {
+  // Restore console.error after tests
+  console.error = console.__proto__.error;
+});
+
 describe('TaskService', () => {
   let db;
   let taskService;
@@ -211,17 +225,32 @@ describe('TaskService', () => {
         repeatOption: 'daily',
         repeatEndDay: '2023-07-25'
       });
-      
-      await taskService.delete(
-        recurringTask.id, 
-        false, 
-        '2023-07-22'
-      );
-      
+
+      // Save original console.error
+      const originalConsoleError = console.error;
+
+      // Suppress only the "already deleted" message
+      console.error = (msg, err) => {
+        if (err?.message === 'This instance is already deleted') return;
+        originalConsoleError(msg, err);
+      };
+
+      // First deletion (normal)
+      await taskService.delete(recurringTask.id, false, '2023-07-22');
+
+      // Second deletion (expected to throw)
+      await expect(
+        taskService.delete(recurringTask.id, false, '2023-07-22')
+      ).rejects.toThrow('This instance is already deleted');
+
       const updatedTask = await db.get('SELECT * FROM tasks WHERE id = ?', recurringTask.id);
-      expect(JSON.parse(updatedTask.skipDates)).toContain('2023-07-22'); // Date-only format expected
+      expect(JSON.parse(updatedTask.skipDates)).toContain('2023-07-22');
+
+      // Restore original console.error
+      console.error = originalConsoleError;
     });
   });
+
 
   describe('reminders', () => {
     test('should set reminder with time', async () => {

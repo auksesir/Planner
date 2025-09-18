@@ -2,7 +2,7 @@
 const pomodoroController = require('../../controllers/pomodoroController');
 
 // Mock dependencies
-jest.mock('../services/serviceFactory');
+jest.mock('../../services/serviceFactory');
 const ServiceFactory = require('../../services/serviceFactory');
 
 describe('pomodoroController', () => {
