@@ -37,5 +37,9 @@
     "prettier": "^3.6.2",
     "superagent": "^10.2.3",
     "supertest": "^7.1.4"
-  }
+  },
+  "resolutions": {
+    "debug": "^4.3.4"
+}
+
 }
