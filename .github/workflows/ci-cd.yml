@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x]
     
     steps:
     - name: Checkout code
@@ -33,7 +33,6 @@ jobs:
 
     - name: Verify Jest
       run: cd backend && npx jest --version
-
 
     - name: Run backend tests
       run: cd backend && npm run test:ci
