@@ -3,6 +3,8 @@
 
 .weekly-planner {
   text-align: center;
+  width: 100%;
+  overflow-x: visible;
 }
 
 h1 {
@@ -75,6 +77,12 @@ h1 {
   margin-bottom: 40px; /* Added margin at the bottom */
 }
 
+/* Current week column highlighting */
+.current-week-column {
+  background-color: rgba(59, 131, 246, 0.151);
+  box-shadow: 0 0 0.3rem 0.1rem rgba(59, 131, 246, 0.326);
+}
+
 .week-days-strip {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -116,21 +124,20 @@ h1 {
 
 /* IMPROVED SCROLL CONTAINERS */
 .weekly-scroll-container {
-  overflow-x: scroll; /* Force horizontal scrollbar to always be visible */
+  overflow-x: scroll;
   overflow-y: auto;
   width: 100%;
-  max-width: 100%;
-  height: calc(100vh - 250px); /* Reduced height to leave more space at bottom */
+  max-width: 1200px; /* Add this line to limit width */
+  margin: 0 auto; /* Add this to center it */
+  height: calc(100vh - 250px);
   padding-bottom: 1rem;
-  margin-bottom: 60px; /* Added margin at the bottom */
+  margin-bottom: 60px;
   position: relative;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  scrollbar-width: auto; /* For Firefox */
+  box-sizing: border-box;
 }
 
 .weekly-content-wrapper {
-  width: max-content;
-  min-width: 1400px; /* Increased minimum width to ensure full content is available for scrolling */
+  width: 1680px;
   position: relative;
 }
 

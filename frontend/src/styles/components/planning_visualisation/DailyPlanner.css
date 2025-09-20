@@ -78,9 +78,9 @@ body {
   width: 100%;
   display: flex;
   align-items: flex-start;
-  background-color: #eab81400;
+  background-color: #0a080300;
   padding: 0.7rem;
-  box-shadow: 0 0 0.2rem 0.1rem #eae3f220;
+  box-shadow: 0 0 0.05rem 0.05rem #fbfafd03;
   border-radius: 0.5rem;
   overflow: visible;
   box-sizing: border-box;
@@ -149,14 +149,16 @@ body {
 }
 
 .task-time {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;       
+  color: rgba(255, 255, 255, 0.5);   
 }
 
 .task-duration {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;       
+  font-weight: 700;         
+  color: rgba(255, 255, 255);   
   margin-top: 0.1rem;
+  letter-spacing: 0.2em;
 }
 
 .task-title {
@@ -255,8 +257,8 @@ body {
 
 /* Time Slot States */
 .time-slot.current {
-  background-color: rgba(59, 130, 246, 0.1);
-  box-shadow: 0 0 0.3rem 0.1rem rgba(59, 130, 246, 0.2);
+  background-color: rgba(59, 131, 246, 0.151);
+  box-shadow: 0 0 0.3rem 0.1rem rgba(59, 131, 246, 0.326);
 }
 
 .time-slot.passed {

@@ -58,26 +58,35 @@
     "test": "react-scripts test --watchAll --passWithNoTests",
     "test:ci": "react-scripts test --coverage --watchAll=false --ci --passWithNoTests",
     "test:coverage": "react-scripts test --coverage --watchAll=false --ci",
-    
     "test:e2e": "playwright test src/tests/e2e/",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
-    
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:check": "eslint src --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md}",
     "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,css,md}"
   },
   "jest": {
-    
     "coverageThreshold": {
       "global": {
         "branches": 20,
         "functions": 20,
         "lines": 20,
         "statements": 20
-        }
       }
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

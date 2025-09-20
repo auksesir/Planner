@@ -440,23 +440,25 @@ const WeeklyPlanner = ({ setTaskToEdit, setReminderToEdit }) => {
         <div className="weekly-scroll-container" id="weekly-scroll">
           <div className="weekly-content-wrapper">
             <div className="week-grid">
-            {weekDays.map(date => {
-              const dayStr = format(date, 'yyyy-MM-dd');
-              return (
-                <DayCell
-                  key={dayStr}
-                  date={date}
-                  tasks={weeklyTasks[dayStr] || []}
-                  reminders={weeklyReminders[dayStr] || []} 
-                  onDayClick={handleDayClick}
-                  settings={settings}
-                  onEventEdit={handleEventEdit}
-                  onEventDelete={handleDeleteEvent}
-                  hourHeights={hourHeights} // Dynamic heights based on event density
-                />
-              );
-            })}
-            </div>
+              {weekDays.map(date => {
+                const dayStr = format(date, 'yyyy-MM-dd');
+                const isCurrentDay = isSameDay(date, today);
+                return (
+                  <div key={dayStr} className={isCurrentDay ? 'current-week-column' : ''}>
+                    <DayCell
+                      date={date}
+                      tasks={weeklyTasks[dayStr] || []}
+                      reminders={weeklyReminders[dayStr] || []} 
+                      onDayClick={handleDayClick}
+                      settings={settings}
+                      onEventEdit={handleEventEdit}
+                      onEventDelete={handleDeleteEvent}
+                      hourHeights={hourHeights}
+                    />
+                  </div>
+                );
+              })}
+              </div>
           </div>
         </div>
       ) : (

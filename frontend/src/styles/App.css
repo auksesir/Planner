@@ -147,19 +147,27 @@
 }
 
 .settings-button {
+  color: rgba(240, 230, 221, 0);
+  -webkit-text-stroke: 0.08rem rgba(80, 96, 235, 0.76);
+  text-decoration: none;
+  margin-right: 1.5rem;
+  transition: all 0.3s; 
+  padding-bottom: 0.2rem;
   background: none;
   border: none;
-  color: inherit;
-  font: inherit;
   cursor: pointer;
-  padding: 0;
-  text-decoration: none;
-  display: inline-block;
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: 0.3vh;
 }
 
 .settings-button:hover {
-  /* Match your Link hover styles */
-  text-decoration: underline;
+  border-radius: 0.25rem;
+  background-color: rgba(240, 203, 179, 0.15);
+  color: #080527;      
+  opacity: 1;
+  padding: 0.5rem;
+  -webkit-text-stroke: 0rem rgba(255, 255, 255, 0.26);
 }
 
 .sphere-timer-overlay {
