@@ -239,11 +239,14 @@ export const formatDateToISO = (date) => {
  * @returns {Date | null} - The calculated end time, or null if invalid inputs.
  */
 export const calculateEndTime = (startTime, selectedDuration) => {
-  if (startTime && selectedDuration) {
-    return new Date(startTime.getTime() + selectedDuration * 60 * 1000); // Add the duration (in ms) to the start time
-  }
-  return null;
+  if (!(startTime instanceof Date) || isNaN(startTime.getTime())) return null;
+  if (typeof selectedDuration !== 'number' || isNaN(selectedDuration)) return null;
+
+  const end = new Date(startTime);
+  end.setMinutes(end.getMinutes() + selectedDuration);
+  return end;
 };
+
 
 /**
  * Formats a date object to 'YYYY-MM-DD' format.

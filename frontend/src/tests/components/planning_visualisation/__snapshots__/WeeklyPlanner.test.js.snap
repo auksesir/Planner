@@ -112,73 +112,101 @@ exports[`WeeklyPlanner Component matches snapshot 1`] = `
           class="week-grid"
         >
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
           <div
-            data-testid="day-cell"
+            class=""
           >
-            <div>
-              Day: Thu
-            </div>
-            <div>
-              Date: 20
+            <div
+              data-testid="day-cell"
+            >
+              <div>
+                Day: Thu
+              </div>
+              <div>
+                Date: 20
+              </div>
             </div>
           </div>
         </div>

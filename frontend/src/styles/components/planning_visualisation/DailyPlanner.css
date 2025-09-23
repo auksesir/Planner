@@ -85,6 +85,7 @@ body {
   overflow: visible;
   box-sizing: border-box;
   min-width: 280px;
+  transition: all 0.3s ease;
 }
 
 /* Time Display - Add right margin to push content */
@@ -106,7 +107,6 @@ body {
   overflow: visible;
   padding-left: 5px; /* Added slight padding */
 }
-
 
 /* Task/Reminder Items - Consistent Colors */
 .task-item {
@@ -171,8 +171,8 @@ body {
 }
 
 .highlighted-task {
-  background-color: rgba(255, 255, 0, 0.2) !important;
-  box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.5);
+  border-left: 4px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: -2px 0 8px rgba(255, 255, 255, 0.3);
   border-radius: 3px;
   padding: 2px 4px;
 }
@@ -255,19 +255,101 @@ body {
   background-color: #e28787;
 }
 
-/* Time Slot States */
+/* Time Slot States - ENHANCED WITH SHRINKING AND BLUR EFFECTS */
 .time-slot.current {
   background-color: rgba(59, 131, 246, 0.151);
   box-shadow: 0 0 0.3rem 0.1rem rgba(59, 131, 246, 0.326);
+  filter: none;
+  transition: all 0.3s ease;
 }
 
+.time-slot.current:hover {
+  box-shadow: 0 0 0.5rem 0.2rem rgba(59, 131, 246, 0.4);
+}
+
+/* Passed Time Slots - Shrink down, expand on hover */
 .time-slot.passed {
-  background-color: rgba(10, 10, 10, 0.8);
+  background-color: rgba(245, 234, 234, 0.039);
   opacity: 0.7;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 40px; /* Compressed height */
+  overflow: hidden;
+  padding: 0.3rem 0.7rem; /* Reduced padding */
 }
 
+.time-slot.passed .time-slot-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  transform: scale(0.8);
+}
+
+.time-slot.passed:hover {
+  opacity: 1;
+  background-color: rgba(245, 234, 234, 0.08);
+  height: auto; /* Expand to full height */
+  padding: 0.7rem; /* Restore full padding */
+  z-index: 10;
+  position: relative;
+  transform: scale(1.02);
+}
+
+.time-slot.passed:hover .time-slot-content {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Future Time Slots - Add blur effect */
 .time-slot.future {
-  background-color: rgba(20, 20, 20, 0.4);
+  background-color: rgba(240, 232, 232, 0.103);
+  filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.time-slot.future:hover {
+  filter: blur(0px);
+  background-color: rgba(240, 232, 232, 0.15);
+}
+
+/* Ensure time display is always visible and properly sized */
+.time-slot.passed .time {
+  opacity: 1;
+  filter: none;
+  font-size: 0.9rem; /* Slightly smaller in collapsed state */
+  transition: all 0.3s ease;
+}
+
+.time-slot.passed:hover .time {
+  font-size: 1rem; /* Back to normal size on hover */
+}
+
+.time-slot.future .time,
+.time-slot.current .time {
+  opacity: 1;
+  filter: none;
+}
+
+/* Make sure action buttons work properly on hover for passed items */
+.time-slot.passed:hover .task-actions,
+.time-slot.passed:hover .reminder-icon-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Additional enhancement: Subtle animation for content reveal */
+.time-slot.passed .task-item,
+.time-slot.passed .reminder-item {
+  transition: all 0.3s ease;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.time-slot.passed:hover .task-item,
+.time-slot.passed:hover .reminder-item {
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* Input Styles */
@@ -424,6 +506,29 @@ body {
   
   .reminder-icon {
     font-size: 0.8rem;
+  }
+
+  /* Mobile responsive adjustments for new effects */
+  .time-slot.future {
+    filter: blur(1px);
+  }
+  
+  .time-slot.passed {
+    height: 35px; /* Slightly smaller on mobile */
+    padding: 0.25rem 0.6rem;
+  }
+  
+  .time-slot.passed:hover {
+    transform: scale(1.01);
+    padding: 0.6rem;
+  }
+  
+  .time-slot.passed .time {
+    font-size: 0.8rem;
+  }
+  
+  .time-slot.passed:hover .time {
+    font-size: 0.9rem;
   }
 }
 

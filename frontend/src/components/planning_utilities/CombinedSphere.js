@@ -166,26 +166,29 @@ const CombinedSphere = ({ currentTask }) => {
   const secondsLeft = timeLeft % 60;
 
   const styles = `
-    .timer-sphere {
-      z-index: -1;
-      width: 15rem;
-      height: 15rem;
-      border-radius: 50%;
-      box-shadow: 0 0 .5rem .3rem rgba(255, 255, 255, 0.076), inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
-      animation: bounce 7s ease-in-out infinite;
-      filter: blur(.03rem);
-      position: fixed;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.5s ease-in-out;
-      background: transparent;
-    }
+  .timer-sphere {
+    z-index: -1;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    box-shadow: 0 0 .5rem .3rem rgba(255, 255, 255, 0.076), inset 0 0 1rem 2rem rgba(241, 223, 206, 0.075);
+    animation: bounce 7s ease-in-out infinite;
+    filter: blur(.03rem);
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-in-out;
+    background: transparent;
+  }
 
-    .timer-sphere.notcentered {
-      top: -65%;
-    }
-  `;
+  .timer-sphere.notcentered {
+    top: -60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  }
+`;
 
   return (
     <>

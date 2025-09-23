@@ -13,16 +13,16 @@ import { ClearIcon, RepeatIcon } from '../../icons/index';
 import { setSelectedDayFlag } from '../../redux/tasks/actions/dailyPlannerFlagActions';
 import '../../styles/components/input_components/TaskInputBar.css';
 import {
-    shouldRefetchDayView
+  shouldRefetchDayView
 } from '../../utils/sharedUtils';
 import {
-    clearInputField as clearTaskInputField,
-    submitTask
+  clearInputField as clearTaskInputField,
+  submitTask
 } from '../../utils/taskUtils';
 import {
-    adjustTimeToSelectedDay,
-    calculateEndTime,
-    formatDate2
+  adjustTimeToSelectedDay,
+  calculateEndTime,
+  formatDate2
 } from '../../utils/timeUtils';
 
 
@@ -195,14 +195,16 @@ const TaskInputBar = ({ onAddOrUpdateTask, onCancel, currentDay, selectedDayUI, 
   };
 
   const handleDurationChange = (e) => {
-    setTaskState(prev => {
-      const newState = { ...prev, selectedDuration: e.target.value };
-      if (prev.startTime) {
-        newState.endTime = calculateEndTime(prev.startTime, e.target.value);
-      }
-      return newState;
-    });
-  };
+  const durationMinutes = Number(e.target.value);
+  setTaskState(prev => {
+    const newState = { ...prev, selectedDuration: durationMinutes };
+    if (prev.startTime && !isNaN(durationMinutes)) {
+      newState.endTime = calculateEndTime(prev.startTime, durationMinutes);
+    }
+    return newState;
+  });
+};
+
 
   const handleRepeatOptionClick = (event) => {
     setAnchorEl(event.currentTarget);

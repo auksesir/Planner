@@ -25,6 +25,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -120,6 +122,13 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   margin: 10px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.input-container:hover,
+.input-container:focus-within {
+  opacity: 1;
 }
 
 /* Code splitting optimization - Hide components during lazy loading */

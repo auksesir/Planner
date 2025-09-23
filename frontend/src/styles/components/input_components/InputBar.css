@@ -16,6 +16,17 @@
   transition: opacity 0.3s ease;
 }
 
+div.input-container {
+  opacity: 0.5; /* or whatever value you want */
+  transition: opacity 0.3s ease;
+}
+
+/* Add at the bottom of InputBar.css */
+div.input-container:hover,
+div.input-container:focus-within {
+  opacity: 1;
+}
+
 .input-wrapper {
   display: flex;
   justify-content: center;

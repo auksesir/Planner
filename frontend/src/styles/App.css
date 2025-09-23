@@ -1,3 +1,8 @@
+* a:focus,
+* button:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 .navbar {
   display: flex;
@@ -137,28 +142,20 @@
   transform: translate(-50%, -50%);
 }
 
-@keyframes bounce {
-  0%, 100% {
-      transform: translate(-50%, -50%) translateY(0);
-  }
-  50% {
-      transform: translate(-50%, -50%) translateY(-2px); /* Adjust the bounce height */
-  }
-}
-
 .settings-button {
   color: rgba(240, 230, 221, 0);
   -webkit-text-stroke: 0.08rem rgba(80, 96, 235, 0.76);
   text-decoration: none;
   margin-right: 1.5rem;
   transition: all 0.3s; 
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.7rem;
   background: none;
   border: none;
   cursor: pointer;
   font-size: inherit;
   font-family: inherit;
   letter-spacing: 0.3vh;
+  
 }
 
 .settings-button:hover {
