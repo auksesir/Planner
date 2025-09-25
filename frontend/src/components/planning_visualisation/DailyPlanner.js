@@ -409,8 +409,7 @@ const DailyPlanner = ({
   // ==================== RENDER ====================
   
   return (
-    <div className={`daily-planner daily-planner-${context}`}>
-      {/* Day title header */}
+    <div className={`daily-planner daily-planner-${context}`} data-context={context}>      {/* Day title header */}
       <h2 className='day-title'>{day}</h2>
       
       {/* Time slots container */}
